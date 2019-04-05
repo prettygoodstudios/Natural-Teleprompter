@@ -89,7 +89,7 @@ class MainScreen extends Component {
                     <Text style={[styles.h1, {color}, {marginTop: -position}]}>{text}</Text>
                 </View>
                 {   settingsModal &&
-                    <Modal dismiss={toggleSettingsModal}>
+                    <Modal dismiss={toggleSettingsModal} title="Settings">
                         <ScrollView>
                             <Text style={styles.inputLabel}>Font Color</Text>
                             <TriangleColorPicker
@@ -112,7 +112,7 @@ class MainScreen extends Component {
                     </Modal>
                 }
                 {   textModal &&
-                    <Modal dismiss={toggleTextModal}>
+                    <Modal dismiss={toggleTextModal} title="Edit Text">
                         <Text style={[styles.inputLabel]}>Speech Text</Text>
                         <TextInput multiline={true} style={styles.textArea} value={this.state.textModalValue} onChangeText={(t) => this.updateTextModalInput(t)}/>
                         <Center><Button content="Update" onPress={() => this.sumbitTextModal()}/></Center>

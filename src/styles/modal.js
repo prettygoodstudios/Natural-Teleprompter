@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native";
-import { offWhite } from ".";
+import { offWhite, darkBlack } from ".";
 
 export default StyleSheet.create({
     modalWrapper: {
@@ -24,12 +24,16 @@ export default StyleSheet.create({
         height: 100,
         display: "flex",
         flexDirection: "row",
-        justifyContent: "flex-end",
+        justifyContent: "space-between",
         alignItems: "center"
     },
     modalDismiss: {
         fontSize: 40
     },
+    modalTitle: {
+        color: darkBlack,
+        fontSize: 30
+    },  
     modalBody: {
         padding: 20,
         display: "flex",
