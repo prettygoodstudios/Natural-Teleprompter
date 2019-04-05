@@ -1,5 +1,5 @@
 import { secondaryBlack, offWhite } from "../styles";
-import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION } from "../actions/types";
+import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE } from "../actions/types";
 
 
 const INIT_STATE = {
@@ -7,7 +7,8 @@ const INIT_STATE = {
     direction: 0,
     backgroundColor: secondaryBlack,
     color: offWhite,
-    settingsModal: false
+    settingsModal: false,
+    fontSize: 30
 }
 
 export default function(state = INIT_STATE, action){
@@ -49,6 +50,11 @@ export default function(state = INIT_STATE, action){
             return{
                 ...state,
                 direction: action.payload
+            }
+        case SET_FONT_SIZE:
+            return{
+                ...state,
+                fontSize: action.payload
             }
         default:
             return{

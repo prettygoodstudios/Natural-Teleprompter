@@ -29,14 +29,14 @@ class ControlPanelComponent extends Component {
     }
 
     render(){
-        const {position, text} = this.props;
+        const {position, text, fontSize} = this.props;
         return(
             <View style={styles.controlPanel}>
                 <ControlPanelItem content="<<" onPress={() => this.setPosition(-position, 1)}/>
                 <ControlPanelItem content="<" onPress={() => this.props.setDirection(-1)}/>
                 <ControlPanelItem content={this.props.direction == 0 ? ">" : "||"} onPress={() => this.togglePause()}/>
                 <ControlPanelItem content=">" onPress={() => this.props.setDirection(1)}/>
-                <ControlPanelItem content=">>" onPress={() => this.setPosition(calculateTextHeight({text, fontSize: 20})-position, 1)}/>
+                <ControlPanelItem content=">>" onPress={() => this.setPosition(calculateTextHeight({text, fontSize})-position, 1)}/>
             </View>
         );
     }

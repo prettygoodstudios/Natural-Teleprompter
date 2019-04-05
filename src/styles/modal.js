@@ -16,7 +16,8 @@ export default StyleSheet.create({
         backgroundColor: offWhite,
         width: "90%",
         borderRadius: 10,
-        maxHeight: "90%"
+        maxHeight: "90%",
+        overflow: "hidden"
     },
     modalHeader: {
         width: "100%",
@@ -37,6 +38,8 @@ export default StyleSheet.create({
     modalBody: {
         padding: 20,
         display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
+        overflow: "hidden",
+        maxHeight: "85%"
     }
 })

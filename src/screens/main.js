@@ -48,11 +48,11 @@ class MainScreen extends Component {
     }
 
     animateText = () => {
-        const {speed, direction, text, position} = this.props;
+        const {speed, direction, text, position, fontSize} = this.props;
         this.props.setPosition(speed, direction);
-        if(position > calculateTextHeight({text, fontSize: 20})){
+        if(position > calculateTextHeight({text, fontSize})){
             this.props.setDirection(0);
-            this.props.setPosition(calculateTextHeight({text, fontSize: 20}) - position, 1);
+            this.props.setPosition(calculateTextHeight({text, fontSize}) - position, 1);
         }
         if(position < 0 && direction == -1){
             this.props.setDirection(0);
@@ -78,15 +78,21 @@ class MainScreen extends Component {
         this.props.toggleTextModal();
     }
 
+    updateFontSize = (size) => {
+        this.props.setFontSize(size);
+        this.props.setDirection(0);
+        this.props.setPosition(-this.props.position, 1);
+    }
+
     render(){
-        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position} = this.props;
+        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position, fontSize} = this.props;
         //alert(`Color : ${color}, Background Color: ${backgroundColor}`)
         return(
             <View>
                 <HeaderComponent />
                 <ControlPanelComponent />
                 <View style={[styles.container, {backgroundColor}]}>
-                    <Text style={[styles.h1, {color}, {marginTop: -position}]}>{text}</Text>
+                    <Text style={[styles.h1, {color}, {marginTop: -position}, {fontSize}]}>{text}</Text>
                 </View>
                 {   settingsModal &&
                     <Modal dismiss={toggleSettingsModal} title="Settings">
@@ -107,6 +113,9 @@ class MainScreen extends Component {
                             <Text>*Touch Bottom Bar To Confirm Selection</Text>
                             <Text style={styles.inputLabel}>Speed</Text>
                             <Slider minimumValue={0} maximumValue={40} value={speed} onSlidingComplete={(v) => this.props.setSpeed(v)}/>
+                            <View style={{width: "100%", height: 20}}></View>
+                            <Text style={styles.inputLabel}>Font Size</Text>
+                            <Slider minimumValue={0} maximumValue={80} value={fontSize} onSlidingComplete={(v) => this.updateFontSize(v)}/>
                             <View style={{width: "100%", height: 20}}></View>
                         </ScrollView>
                     </Modal>

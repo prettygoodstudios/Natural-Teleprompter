@@ -1,5 +1,5 @@
 import {AsyncStorage} from  "react-native";
-import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION } from "./types";
+import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE } from "./types";
 import { back } from "react-native/Libraries/Animated/src/Easing";
 
 //Setting Keys
@@ -7,6 +7,7 @@ const SPEED = 'TELEPROMPTER_SPEED';
 const DIRECTION = 'TELEPROMPTER_DIRECTION';
 const COLOR = 'TELEPROMPTER_COLOR';
 const BACKGROUND_COLOR = 'TELEPROMPTER_BACKGROUND_COLOR';
+const FONT_SIZE = 'FONT_SIZE';
 
 const getKey = async (key) => {
     try {
@@ -75,6 +76,14 @@ export const setDirection = (direction) => {
     return{
         type: SET_DIRECTION,
         payload: direction
+    }
+}
+
+export const setFontSize = (size) => {
+    storeData(FONT_SIZE, size.toString());
+    return{
+        type: SET_FONT_SIZE,
+        payload: size
     }
 }
 
