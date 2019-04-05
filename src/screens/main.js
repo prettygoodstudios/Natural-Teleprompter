@@ -8,30 +8,44 @@ import * as actions from "../actions";
 
 import HeaderComponent from "../components/header";
 import ControlPanelComponent from "../components/controlPanel";
+import Modal from "../components/modal";
 
 
  
-
+function analyzeAudio(stream){
+    return (stream.reduce((a,b) => a+b)/stream.length) < -100 ? "Loud" : "Soft";
+}
 
 
 class MainScreen extends Component {
 
-    componendDidMount(){
+    constructor(){
+        super();
+        this.state = {
+            settingsModal: false
+        }
+    }
+
+    componentDidMount(){
         this.props.retrieveSavedSettings();
-        /*
-        Recording.init({
+        
+        /*Recording.init({
             bufferSize: 4096,
             sampleRate: 44100,
             bitsPerChannel: 16,
             channelsPerFrame: 1,
-          })
-          Recording.addRecordingEventListener(data => alert(data))
-          Recording.start()
-          */
+        });*/
+        //Recording.addRecordingEventListener(data => this.props.analyzeAudio(analyzeAudio(data)));
+        //Recording.start()
+          
+    }
+
+    componentWillUnMount(){
+        Recording.stop()
     }
 
     render(){
-        const {color, backgroundColor} = this.props;
+        const {color, backgroundColor, settingsModal} = this.props;
         //alert(`Color : ${color}, Background Color: ${backgroundColor}`)
         return(
             <View>
@@ -40,6 +54,14 @@ class MainScreen extends Component {
                 <View style={[styles.container, {backgroundColor}]}>
                     <Text style={[styles.h1, {color}]}>Natural Teleprompter</Text>
                 </View>
+                {   settingsModal &&
+                    <Modal dismiss={this.props.toggleSettingsModal}>
+                        <Text>Hello World</Text>
+                        <Text>Hello World</Text>
+                        <Text>Hello World</Text>
+                        <Text>Hello World</Text>
+                    </Modal>
+                }
             </View>
         )
     }
