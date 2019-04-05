@@ -11,11 +11,14 @@
     "expokit": "^32.0.7",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-native-color-picker": "^0.4.0",
     "react-native-recording": "^0.4.1",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "tinycolor": "0.0.1",
+    "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0"

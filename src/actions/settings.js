@@ -1,5 +1,6 @@
 import {AsyncStorage} from  "react-native";
-import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL } from "./types";
+import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR } from "./types";
+import { back } from "react-native/Libraries/Animated/src/Easing";
 
 //Setting Keys
 const SPEED = 'SPEED';
@@ -44,3 +45,28 @@ export const toggleSettingsModal = () => {
         type: TOGGLE_SETTINGS_MODAL
     }
 }
+
+export const setColor = (color) => {
+    storeData(COLOR, color);
+    return{
+        type: SET_COLOR,
+        payload: color
+    }
+}
+
+export const setBackgroundColor = (backgroundColor) => {
+    storeData(BACKGROUND_COLOR, backgroundColor);
+    return{
+        type: SET_BACKGROUND_COLOR,
+        payload: backgroundColor
+    } 
+}
+
+
+const storeData = async (key, value) => {
+    try {
+      await AsyncStorage.setItem(key, value);
+    } catch (error) {
+      alert("Error Saving Color.")
+    }
+  }

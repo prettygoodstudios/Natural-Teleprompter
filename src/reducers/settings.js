@@ -1,5 +1,5 @@
 import { secondaryBlack, offWhite } from "../styles";
-import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL } from "../actions/types";
+import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR } from "../actions/types";
 
 
 const INIT_STATE = {
@@ -26,6 +26,16 @@ export default function(state = INIT_STATE, action){
             return{
                 ...state,
                 settingsModal: !state.settingsModal
+            }
+        case SET_COLOR:
+            return{
+                ...state,
+                color: action.payload
+            }
+        case SET_BACKGROUND_COLOR:
+            return{
+                ...state,
+                backgroundColor: action.payload
             }
         default:
             return{

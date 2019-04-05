@@ -1,2 +1,2 @@
-export {retrieveSavedSettings, toggleSettingsModal} from "./settings";
+export {retrieveSavedSettings, toggleSettingsModal, setColor, setBackgroundColor} from "./settings";
 export {analyzeAudio} from "./audio";
