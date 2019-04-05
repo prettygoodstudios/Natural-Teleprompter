@@ -25,12 +25,14 @@ class MainScreen extends Component {
     constructor(){
         super();
         this.state = {
-            textModalValue: "Enter your own text."
+            textModalValue: "Enter your own text.",
+            textPosition: 0
         }
     }
 
     componentDidMount(){
         this.props.retrieveSavedSettings();
+        setInterval(this.animateText, 1000/60);
         
         /*Recording.init({
             bufferSize: 4096,
@@ -43,8 +45,21 @@ class MainScreen extends Component {
           
     }
 
+    animateText = () => {
+        const {speed, direction} = this.props;
+        this.setState({
+            textPosition: this.state.textPosition + speed*direction
+        });
+        if(this.state.textPosition < 0){
+            this.setState({
+                textPosition: 0
+            });
+        }
+    }
+
     componentWillUnMount(){
         Recording.stop()
+        clearInterval(animateText);
     }
 
     updateTextModalInput = (t) => {
@@ -66,7 +81,7 @@ class MainScreen extends Component {
                 <HeaderComponent />
                 <ControlPanelComponent />
                 <View style={[styles.container, {backgroundColor}]}>
-                    <Text style={[styles.h1, {color}]}>{text}</Text>
+                    <Text style={[styles.h1, {color}, {marginTop: -this.state.textPosition}]}>{text}</Text>
                 </View>
                 {   settingsModal &&
                     <Modal dismiss={toggleSettingsModal}>
@@ -87,12 +102,13 @@ class MainScreen extends Component {
                             <Text>*Touch Bottom Bar To Confirm Selection</Text>
                             <Text style={styles.inputLabel}>Speed</Text>
                             <Slider minimumValue={0} maximumValue={40} value={speed} onSlidingComplete={(v) => this.props.setSpeed(v)}/>
+                            <View style={{width: "100%", height: 20}}></View>
                         </ScrollView>
                     </Modal>
                 }
                 {   textModal &&
                     <Modal dismiss={toggleTextModal}>
-                        <Text style={styles.inputLabel}>Speech Text</Text>
+                        <Text style={[styles.inputLabel]}>Speech Text</Text>
                         <TextInput multiline={true} style={styles.textArea} value={this.state.textModalValue} onChangeText={(t) => this.updateTextModalInput(t)}/>
                         <Center><Button content="Update" onPress={() => this.sumbitTextModal()}/></Center>
                     </Modal>

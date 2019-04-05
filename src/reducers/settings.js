@@ -1,10 +1,10 @@
 import { secondaryBlack, offWhite } from "../styles";
-import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED } from "../actions/types";
+import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION } from "../actions/types";
 
 
 const INIT_STATE = {
     speed: 10,
-    direction: 1,
+    direction: 0,
     backgroundColor: secondaryBlack,
     color: offWhite,
     settingsModal: false
@@ -44,6 +44,11 @@ export default function(state = INIT_STATE, action){
             return{
                 ...state,
                 backgroundColor: action.payload
+            }
+        case SET_DIRECTION:
+            return{
+                ...state,
+                direction: action.payload
             }
         default:
             return{

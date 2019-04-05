@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
    container: {
        padding: 20,
        height: height - 160,
-       backgroundColor: secondaryBlack
+       backgroundColor: secondaryBlack,
+       zIndex: -100
    },
    inputLabel: {
        fontSize: 20,

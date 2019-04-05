@@ -5,3 +5,4 @@ export const SET_BACKGROUND_COLOR = 'SET_BACKGROUND_COLOR';
 export const TOGGLE_TEXT_MODAL = 'TOGGLE_TEXT_MODAL';
 export const SET_TEXT = 'SET_TEXT';
 export const SET_SPEED = 'SET_SPEED';
+export const SET_DIRECTION = 'SET_DIRECTION';

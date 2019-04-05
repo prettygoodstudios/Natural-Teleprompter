@@ -1,5 +1,5 @@
 import {AsyncStorage} from  "react-native";
-import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED } from "./types";
+import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION } from "./types";
 import { back } from "react-native/Libraries/Animated/src/Easing";
 
 //Setting Keys
@@ -67,6 +67,14 @@ export const setSpeed = (speed) => {
     return{
         type: SET_SPEED,
         payload: speed
+    }
+}
+
+export const setDirection = (direction) => {
+    storeData(DIRECTION, direction.toString());
+    return{
+        type: SET_DIRECTION,
+        payload: direction
     }
 }
 
