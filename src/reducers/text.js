@@ -1,8 +1,9 @@
-import { TOGGLE_TEXT_MODAL, SET_TEXT} from "../actions/types";
+import { TOGGLE_TEXT_MODAL, SET_TEXT, SET_POSITION} from "../actions/types";
 
 const INIT_STATE = {
     textModal: false,
-    text: "Enter your own text."
+    text: "Enter your own text.",
+    position: 0
 }
 
 export default function(state = INIT_STATE, action){
@@ -16,6 +17,11 @@ export default function(state = INIT_STATE, action){
             return{
                 ...state,
                 text: action.payload
+            }
+        case SET_POSITION:
+            return{
+                ...state,
+                position: state.position + action.payload
             }
         default:
             return{

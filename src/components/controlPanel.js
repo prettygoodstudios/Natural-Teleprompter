@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 import styles from "../styles/controlPanel";
 import * as actions from "../actions";
+import calculateTextHeight from '../helpers/height';
 
 const ControlPanelItem = (props) => {
     const {content, onPress} = props;
@@ -22,14 +23,20 @@ class ControlPanelComponent extends Component {
         this.props.setDirection(this.props.direction == 0 ? 1 : 0);
     }
 
+    setPosition = (delta, direction) => {
+        this.props.setPosition(delta, direction);
+        this.props.setDirection(0);
+    }
+
     render(){
+        const {position, text} = this.props;
         return(
             <View style={styles.controlPanel}>
-                <ControlPanelItem content="<<" onPress={() => alert("Start Over")}/>
+                <ControlPanelItem content="<<" onPress={() => this.setPosition(-position, 1)}/>
                 <ControlPanelItem content="<" onPress={() => this.props.setDirection(-1)}/>
                 <ControlPanelItem content={this.props.direction == 0 ? ">" : "||"} onPress={() => this.togglePause()}/>
                 <ControlPanelItem content=">" onPress={() => this.props.setDirection(1)}/>
-                <ControlPanelItem content=">>" onPress={() => alert("Go To End")}/>
+                <ControlPanelItem content=">>" onPress={() => this.setPosition(calculateTextHeight({text, fontSize: 20})-position, 1)}/>
             </View>
         );
     }
@@ -37,7 +44,8 @@ class ControlPanelComponent extends Component {
 
 function mapStateToProps(state){
     return{
-        ...state.settings
+        ...state.settings,
+        ...state.text
     }
 }
 

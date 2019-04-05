@@ -1,11 +1,12 @@
 import React, {Component} from "react";
-import {View, Text, ScrollView, TextInput, Slider} from "react-native";
+import {View, Text, ScrollView, TextInput, Slider, Dimensions} from "react-native";
 import Recording from 'react-native-recording';
 import {connect} from 'react-redux';
 import {TriangleColorPicker} from 'react-native-color-picker';
 
 import styles from "../styles";
 import * as actions from "../actions";
+import calculateTextHeight from "../helpers/height";
 
 import HeaderComponent from "../components/header";
 import ControlPanelComponent from "../components/controlPanel";
@@ -14,7 +15,8 @@ import Button from '../components/button';
 import Center from "../components/center";
 
 
- 
+const {width, height} = Dimensions.get("window"); 
+
 function analyzeAudio(stream){
     return (stream.reduce((a,b) => a+b)/stream.length) < -100 ? "Loud" : "Soft";
 }
@@ -46,14 +48,15 @@ class MainScreen extends Component {
     }
 
     animateText = () => {
-        const {speed, direction} = this.props;
-        this.setState({
-            textPosition: this.state.textPosition + speed*direction
-        });
-        if(this.state.textPosition < 0){
-            this.setState({
-                textPosition: 0
-            });
+        const {speed, direction, text, position} = this.props;
+        this.props.setPosition(speed, direction);
+        if(position > calculateTextHeight({text, fontSize: 20})){
+            this.props.setDirection(0);
+            this.props.setPosition(calculateTextHeight({text, fontSize: 20}) - position, 1);
+        }
+        if(position < 0 && direction == -1){
+            this.props.setDirection(0);
+            this.props.setPosition(-position, 1);
         }
     }
 
@@ -70,18 +73,20 @@ class MainScreen extends Component {
 
     sumbitTextModal = () => {
         this.props.setText(this.state.textModalValue);
+        this.props.setDirection(0);
+        this.props.setPosition(-this.props.position, 1);
         this.props.toggleTextModal();
     }
 
     render(){
-        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed} = this.props;
+        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position} = this.props;
         //alert(`Color : ${color}, Background Color: ${backgroundColor}`)
         return(
             <View>
                 <HeaderComponent />
                 <ControlPanelComponent />
                 <View style={[styles.container, {backgroundColor}]}>
-                    <Text style={[styles.h1, {color}, {marginTop: -this.state.textPosition}]}>{text}</Text>
+                    <Text style={[styles.h1, {color}, {marginTop: -position}]}>{text}</Text>
                 </View>
                 {   settingsModal &&
                     <Modal dismiss={toggleSettingsModal}>
