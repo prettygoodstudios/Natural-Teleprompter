@@ -3,10 +3,10 @@ import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COL
 import { back } from "react-native/Libraries/Animated/src/Easing";
 
 //Setting Keys
-const SPEED = 'SPEED';
-const DIRECTION = 'DIRECTION';
-const COLOR = 'COLOR';
-const BACKGROUND_COLOR = 'BACKGROUND_COLOR';
+const SPEED = 'TELEPROMPTER_SPEED';
+const DIRECTION = 'TELEPROMPTER_DIRECTION';
+const COLOR = 'TELEPROMPTER_COLOR';
+const BACKGROUND_COLOR = 'TELEPROMPTER_BACKGROUND_COLOR';
 
 const getKey = async (key) => {
     try {

@@ -27,7 +27,7 @@ class HeaderComponent extends Component {
                 <View style={styles.header}>
                     <Text style={styles.headerTitle}>Natural Teleprompter</Text>
                     <View style={styles.headerButtonContainer}>
-                        <HeaderButton content="Edit Text" onPress={() => alert("Edit")}/>
+                        <HeaderButton content="Edit Text" onPress={() => this.props.toggleTextModal()}/>
                         <HeaderButton content="Settings" onPress={() => this.props.toggleSettingsModal()}/>
                     </View>
                 </View>

@@ -19,6 +19,35 @@ const styles = StyleSheet.create({
        padding: 20,
        height: height - 160,
        backgroundColor: secondaryBlack
+   },
+   inputLabel: {
+       fontSize: 20,
+       color: darkBlack,
+       marginTop: 20
+   },
+   textArea: {
+       width: "100%",
+       height: 300,
+       borderWidth: 1,
+       borderColor: darkBlack,
+       color: darkBlack,
+       borderRadius: 5,
+       padding: 10,
+       fontSize: 20
+   },
+   button: {
+       backgroundColor: darkBlack,
+       padding: 20,
+       borderRadius: 5,
+       maxWidth: 200,
+       justifyContent: "center",
+       alignItems: "center",
+       margin: 10
+   },
+   buttonText: {
+       color: offWhite,
+       fontSize: 20,
+       textAlign: "center"
    }
 });
 
