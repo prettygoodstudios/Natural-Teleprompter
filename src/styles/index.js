@@ -35,6 +35,15 @@ const styles = StyleSheet.create({
        padding: 10,
        fontSize: 20
    },
+   textInput: {
+        width: "100%",
+        borderWidth: 1,
+        borderColor: darkBlack,
+        color: darkBlack,
+        borderRadius: 5,
+        padding: 10,
+        fontSize: 20
+   },
    button: {
        backgroundColor: darkBlack,
        padding: 20,

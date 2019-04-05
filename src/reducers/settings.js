@@ -1,5 +1,5 @@
 import { secondaryBlack, offWhite } from "../styles";
-import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR } from "../actions/types";
+import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED } from "../actions/types";
 
 
 const INIT_STATE = {
@@ -16,6 +16,9 @@ export default function(state = INIT_STATE, action){
             const {speed, direction, backgroundColor, color} = action.payload;
             const nullVal = {_40: 1, _65: 1, _55: null, _72: null};
             return{
+                ...state
+            }
+            return{
                 ...state,
                 speed: speed !== nullVal ? speed : state.speed,
                 direction: direction !== nullVal ? direction : state.direction,
@@ -31,6 +34,11 @@ export default function(state = INIT_STATE, action){
             return{
                 ...state,
                 color: action.payload
+            }
+        case SET_SPEED:
+            return{
+                ...state,
+                speed: action.payload
             }
         case SET_BACKGROUND_COLOR:
             return{

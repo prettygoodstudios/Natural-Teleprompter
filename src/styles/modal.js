@@ -15,7 +15,8 @@ export default StyleSheet.create({
     modal: {
         backgroundColor: offWhite,
         width: "90%",
-        borderRadius: 10
+        borderRadius: 10,
+        maxHeight: "90%"
     },
     modalHeader: {
         width: "100%",
