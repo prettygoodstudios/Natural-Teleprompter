@@ -20,11 +20,14 @@ const HeaderButton = (props) => {
 export default class HeaderComponent extends Component {
     render(){
         return(
-            <View style={styles.header}>
-                <Text style={styles.headerTitle}>Natural Teleprompter</Text>
-                <View style={styles.headerButtonContainer}>
-                    <HeaderButton content="Edit" onPress={() => alert("Edit")}/>
-                    <HeaderButton content="Settings" onPress={() => alert("Settings")}/>
+            <View>
+                <View style={styles.headerPush}></View>
+                <View style={styles.header}>
+                    <Text style={styles.headerTitle}>Natural Teleprompter</Text>
+                    <View style={styles.headerButtonContainer}>
+                        <HeaderButton content="Edit Text" onPress={() => alert("Edit")}/>
+                        <HeaderButton content="Settings" onPress={() => alert("Settings")}/>
+                    </View>
                 </View>
             </View>
         );

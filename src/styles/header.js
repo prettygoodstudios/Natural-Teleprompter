@@ -35,5 +35,10 @@ export default StyleSheet.create({
        display: "flex",
        flexDirection: "row",
        justifyContent: "flex-end"
+   },
+   headerPush: {
+       width: "100%",
+       height: 10,
+       backgroundColor: darkBlack
    }
 });

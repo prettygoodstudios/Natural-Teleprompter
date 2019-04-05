@@ -1,15 +1,28 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+
+
+export const darkBlack = "#212121";
+export const secondaryBlack = "#263238";
+export const thirdBlack = "#424242";
+export const offWhite = "#ECECEC";
+
+
+const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
    h1: {
        fontSize: 30,
        fontWeight: "700",
-       color: "purple"
-   } 
+       color: offWhite
+   },
+   container: {
+       padding: 20,
+       height: height - 160,
+       backgroundColor: secondaryBlack
+   }
 });
 
-export const darkBlack = "#2e3131";
-export const offWhite = "#ECECEC";
+
 
 
 export default styles;
