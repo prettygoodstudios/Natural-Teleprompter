@@ -1,5 +1,5 @@
 import {AsyncStorage} from  "react-native";
-import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE } from "./types";
+import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE, SET_MIRROR } from "./types";
 import { back } from "react-native/Libraries/Animated/src/Easing";
 
 //Setting Keys
@@ -8,6 +8,7 @@ const DIRECTION = 'TELEPROMPTER_DIRECTION';
 const COLOR = 'TELEPROMPTER_COLOR';
 const BACKGROUND_COLOR = 'TELEPROMPTER_BACKGROUND_COLOR';
 const FONT_SIZE = 'FONT_SIZE';
+const MIRROR = 'MIRROR';
 
 const getKey = async (key) => {
     try {
@@ -84,6 +85,14 @@ export const setFontSize = (size) => {
     return{
         type: SET_FONT_SIZE,
         payload: size
+    }
+}
+
+export const setMirror = (val) => {
+    storeData(MIRROR, val.toString());
+    return{
+        type: SET_MIRROR,
+        payload: val
     }
 }
 

@@ -34,11 +34,9 @@ class ControlPanelComponent extends Component {
 
     setTop = async () => {
         const {text, height, fontSize, position} = this.props;
-        for(let i = 0; i < 5; i++){
-            if(calculateTextHeight({text, fontSize})*0.7 > height - fontSize*2){
-                this.props.setPosition(height - fontSize*2 - position, 1);
-                await sleep(200);
-            }
+        for(let i = 0; i < 10; i++){
+            this.props.setPosition(height - fontSize*2 - position, 1);
+            await sleep(200);
         }
         this.props.setDirection(0);
     }

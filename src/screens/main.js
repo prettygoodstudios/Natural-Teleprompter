@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {View, Text, ScrollView, TextInput, Slider, Dimensions} from "react-native";
+import {View, Text, ScrollView, TextInput, Slider, Dimensions, Switch} from "react-native";
 import Recording from 'react-native-recording';
 import {connect} from 'react-redux';
 import {TriangleColorPicker} from 'react-native-color-picker';
@@ -84,15 +84,21 @@ class MainScreen extends Component {
         this.props.setPosition(-this.props.position, 1);
     }
 
+    updateMirror = (val) => {
+        this.props.setMirror(val);
+        this.props.setDirection(0);
+        this.props.setPosition(-this.props.position, 1);
+    }
+
     render(){
-        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position, fontSize} = this.props;
+        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position, fontSize, mirror} = this.props;
         //alert(`Color : ${color}, Background Color: ${backgroundColor}`)
         return(
             <View>
                 <HeaderComponent />
                 <ControlPanelComponent />
                 <View style={[styles.container, {backgroundColor}]}>
-                    <Text style={[styles.h1, {color}, {marginTop: -position}, {fontSize}]} onLayout={(event) => this.props.setHeight(event.nativeEvent.layout.height)}>{text}</Text>
+                    <Text style={[styles.h1, {color}, {marginTop: -position}, {fontSize}, mirror && {transform: [{rotateY: '180deg'}]}]} onLayout={(event) => this.props.setHeight(event.nativeEvent.layout.height)}>{text}</Text>
                 </View>
                 {   settingsModal &&
                     <Modal dismiss={toggleSettingsModal} title="Settings">
@@ -117,6 +123,8 @@ class MainScreen extends Component {
                             <Text style={styles.inputLabel}>Font Size</Text>
                             <Slider minimumValue={0} maximumValue={80} value={fontSize} onSlidingComplete={(v) => this.updateFontSize(v)}/>
                             <View style={{width: "100%", height: 20}}></View>
+                            <Text style={styles.inputLabel}>Mirror Text</Text>
+                            <Switch value={mirror} onValueChange={(v) => this.updateMirror(v)}/>
                         </ScrollView>
                     </Modal>
                 }
