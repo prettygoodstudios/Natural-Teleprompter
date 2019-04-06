@@ -1,4 +1,4 @@
-import {TOGGLE_TEXT_MODAL, SET_TEXT, SET_POSITION} from "./types";
+import {TOGGLE_TEXT_MODAL, SET_TEXT, SET_POSITION, SET_HEIGHT} from "./types";
 
 export const toggleTextModal = () => {
     return {
@@ -17,5 +17,12 @@ export const setPosition = (speed, direction) => {
     return {
         type: SET_POSITION,
         payload: speed * direction
+    }
+}
+
+export const setHeight  = (height) => {
+    return {
+        type: SET_HEIGHT,
+        payload: height
     }
 }

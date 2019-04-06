@@ -8,3 +8,4 @@ export const SET_SPEED = 'SET_SPEED';
 export const SET_DIRECTION = 'SET_DIRECTION';
 export const SET_POSITION = 'SET_POSITION';
 export const SET_FONT_SIZE = 'SET_FONT_SIZE';
+export const SET_HEIGHT = 'SET_HEIGHT';

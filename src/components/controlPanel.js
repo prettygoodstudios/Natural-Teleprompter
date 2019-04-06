@@ -6,6 +6,10 @@ import styles from "../styles/controlPanel";
 import * as actions from "../actions";
 import calculateTextHeight from '../helpers/height';
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
 const ControlPanelItem = (props) => {
     const {content, onPress} = props;
     return(
@@ -28,15 +32,26 @@ class ControlPanelComponent extends Component {
         this.props.setDirection(0);
     }
 
+    setTop = async () => {
+        const {text, height, fontSize, position} = this.props;
+        for(let i = 0; i < 5; i++){
+            if(calculateTextHeight({text, fontSize})*0.7 > height - fontSize*2){
+                this.props.setPosition(height - fontSize*2 - position, 1);
+                await sleep(200);
+            }
+        }
+        this.props.setDirection(0);
+    }
+
     render(){
-        const {position, text, fontSize} = this.props;
+        const {position, text, height, fontSize} = this.props;
         return(
             <View style={styles.controlPanel}>
                 <ControlPanelItem content="<<" onPress={() => this.setPosition(-position, 1)}/>
                 <ControlPanelItem content="<" onPress={() => this.props.setDirection(-1)}/>
                 <ControlPanelItem content={this.props.direction == 0 ? ">" : "||"} onPress={() => this.togglePause()}/>
                 <ControlPanelItem content=">" onPress={() => this.props.setDirection(1)}/>
-                <ControlPanelItem content=">>" onPress={() => this.setPosition(calculateTextHeight({text, fontSize})-position, 1)}/>
+                <ControlPanelItem content=">>" onPress={() => this.setTop()}/>
             </View>
         );
     }

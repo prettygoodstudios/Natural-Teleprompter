@@ -48,11 +48,11 @@ class MainScreen extends Component {
     }
 
     animateText = () => {
-        const {speed, direction, text, position, fontSize} = this.props;
+        const {speed, direction, text, position, fontSize, height} = this.props;
         this.props.setPosition(speed, direction);
-        if(position > calculateTextHeight({text, fontSize})){
+        if(position > height - fontSize*2 && (direction == 1 || direction == 0)){
             this.props.setDirection(0);
-            this.props.setPosition(calculateTextHeight({text, fontSize}) - position, 1);
+            this.props.setPosition(height - fontSize*2 - position, 1);
         }
         if(position < 0 && direction == -1){
             this.props.setDirection(0);
@@ -92,7 +92,7 @@ class MainScreen extends Component {
                 <HeaderComponent />
                 <ControlPanelComponent />
                 <View style={[styles.container, {backgroundColor}]}>
-                    <Text style={[styles.h1, {color}, {marginTop: -position}, {fontSize}]}>{text}</Text>
+                    <Text style={[styles.h1, {color}, {marginTop: -position}, {fontSize}]} onLayout={(event) => this.props.setHeight(event.nativeEvent.layout.height)}>{text}</Text>
                 </View>
                 {   settingsModal &&
                     <Modal dismiss={toggleSettingsModal} title="Settings">
