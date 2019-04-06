@@ -15,11 +15,14 @@ import Button from '../components/button';
 import Center from "../components/center";
 
 
-const {width, height} = Dimensions.get("window"); 
 
 function analyzeAudio(stream){
     return (stream.reduce((a,b) => a+b)/stream.length) < -100 ? "Loud" : "Soft";
 }
+
+const maxFPS = 60;
+let lastFrameTimeMS = 0;
+let deltaTime = 0;
 
 
 class MainScreen extends Component {
@@ -34,8 +37,8 @@ class MainScreen extends Component {
 
     componentDidMount(){
         this.props.retrieveSavedSettings();
-        setInterval(this.animateText, 1000/60);
-        
+        //setInterval(this.animateText, 1000/60);
+        this.animationFrameId = requestAnimationFrame(this.animateText);
         /*Recording.init({
             bufferSize: 4096,
             sampleRate: 44100,
@@ -47,9 +50,15 @@ class MainScreen extends Component {
           
     }
 
-    animateText = () => {
+    animateText = (timestamp) => {
         const {speed, direction, text, position, fontSize, height} = this.props;
-        this.props.setPosition(speed, direction);
+        if(timestamp < lastFrameTimeMS + (1000/maxFPS)){
+            this.animationFrameId = requestAnimationFrame(this.animateText);
+            return;
+        }
+        deltaTime = timestamp - lastFrameTimeMS;
+        lastFrameTimeMS = timestamp;
+        this.props.setPosition(speed*(deltaTime/30), direction);
         if(position > height - fontSize*2 && (direction == 1 || direction == 0)){
             this.props.setDirection(0);
             this.props.setPosition(height - fontSize*2 - position, 1);
@@ -58,11 +67,13 @@ class MainScreen extends Component {
             this.props.setDirection(0);
             this.props.setPosition(-position, 1);
         }
+        this.animationFrameId = requestAnimationFrame(this.animateText);
     }
 
     componentWillUnMount(){
         Recording.stop()
-        clearInterval(animateText);
+        //clearInterval(animateText);
+        cancelAnimationFrame(this.animationFrameId);
     }
 
     updateTextModalInput = (t) => {
@@ -118,7 +129,7 @@ class MainScreen extends Component {
                             />
                             <Text>*Touch Bottom Bar To Confirm Selection</Text>
                             <Text style={styles.inputLabel}>Speed</Text>
-                            <Slider minimumValue={0} maximumValue={40} value={speed} onSlidingComplete={(v) => this.props.setSpeed(v)}/>
+                            <Slider minimumValue={0} maximumValue={20} value={speed} onSlidingComplete={(v) => this.props.setSpeed(v)}/>
                             <View style={{width: "100%", height: 20}}></View>
                             <Text style={styles.inputLabel}>Font Size</Text>
                             <Slider minimumValue={0} maximumValue={80} value={fontSize} onSlidingComplete={(v) => this.updateFontSize(v)}/>
