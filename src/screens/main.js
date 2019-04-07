@@ -38,21 +38,23 @@ class MainScreen extends Component {
 
     componentDidMount(){
         this.props.retrieveSavedSettings();
-        //setInterval(this.animateText, 1000/60);
         this.animationFrameId = requestAnimationFrame(this.animateText);
-        /*Recording.init({
+        Recording.init({
             bufferSize: 4096,
             sampleRate: 44100,
             bitsPerChannel: 16,
             channelsPerFrame: 1,
-        });*/
-        //Recording.addRecordingEventListener(data => this.props.analyzeAudio(analyzeAudio(data)));
-        //Recording.start()
+        });
+        Recording.addRecordingEventListener(data => this.props.analyzeAudio(data));
+        Recording.start()
           
     }
 
     animateText = (timestamp) => {
-        const {speed, direction, text, position, fontSize, height} = this.props;
+        const {speed, direction, text, position, fontSize, height, smartMode, lastSoundMS} = this.props;
+        if(smartMode){
+            this.props.decideToPauseOrStart(lastSoundMS);
+        }
         if(timestamp < lastFrameTimeMS + (1000/maxFPS)){
             this.animationFrameId = requestAnimationFrame(this.animateText);
             return;
@@ -72,8 +74,7 @@ class MainScreen extends Component {
     }
 
     componentWillUnMount(){
-        Recording.stop()
-        //clearInterval(animateText);
+        Recording.stop();
         cancelAnimationFrame(this.animationFrameId);
     }
 
@@ -109,7 +110,7 @@ class MainScreen extends Component {
     }
 
     render(){
-        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position, fontSize, mirror, typeFace, controlPanelSize} = this.props;
+        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position, fontSize, mirror, typeFace, controlPanelSize, smartMode} = this.props;
         //alert(`Color : ${color}, Background Color: ${backgroundColor}`)
         return(
             <View>
@@ -143,6 +144,9 @@ class MainScreen extends Component {
                             <View style={{width: "100%", height: 20}}></View>
                             <Text style={styles.inputLabel}>Mirror Text</Text>
                             <Switch value={mirror} onValueChange={(v) => this.updateMirror(v)}/>
+                            <Text style={styles.inputLabel}>Smart Pause Mode</Text>
+                            <Text>The telprompter will automatically start when it hears your voice and will automatically pause when it hears pauses in your voice.</Text>
+                            <Switch value={smartMode} onValueChange={(v) => this.props.setSmartMode(v)}/>
                             <View style={{width: "100%", height: 20}}></View>
                             <Text style={styles.inputLabel}>Font</Text>
                             <Picker 
@@ -184,7 +188,8 @@ class MainScreen extends Component {
 function mapStateToProps(state){
     return{
         ...state.settings,
-        ...state.text
+        ...state.text,
+        ...state.audio
     }
 }
 

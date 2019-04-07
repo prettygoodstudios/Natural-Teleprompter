@@ -9,7 +9,7 @@ import {Font} from "expo";
 
 import reducers from './src/reducers';
 const logger = createLogger();
-const store = createStore(reducers, applyMiddleware(logger, reduxThunk));
+const store = createStore(reducers, applyMiddleware(reduxThunk));
 
 //Screens
 import MainScreen from "./src/screens/main";
