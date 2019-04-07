@@ -1,5 +1,5 @@
 import {AsyncStorage} from  "react-native";
-import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE, SET_MIRROR, SET_TYPE_FACE } from "./types";
+import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE, SET_MIRROR, SET_TYPE_FACE, SET_CONTROL_PANEL_SIZE } from "./types";
 import { back } from "react-native/Libraries/Animated/src/Easing";
 
 //Setting Keys
@@ -10,6 +10,7 @@ const BACKGROUND_COLOR = 'TELEPROMPTER_BACKGROUND_COLOR';
 const FONT_SIZE = 'FONT_SIZE';
 const MIRROR = 'MIRROR';
 const TYPE_FACE = 'TYPE_FACE';
+const CONTROL_PANEL_SIZE = 'CONTROL_PANEL_SIZE';
 
 const getKey = async (key) => {
     try {
@@ -103,7 +104,15 @@ export const setTypeFace = (val) => {
         type: SET_TYPE_FACE,
         payload: val
     }
-}   
+} 
+
+export const setControlPanelSize = (val) => {
+    storeData(CONTROL_PANEL_SIZE, val.toString());
+    return{
+        type: SET_CONTROL_PANEL_SIZE,
+        payload: val
+    }
+}
 
 
 const storeData = async (key, value) => {

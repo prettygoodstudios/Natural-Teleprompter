@@ -11,3 +11,4 @@ export const SET_FONT_SIZE = 'SET_FONT_SIZE';
 export const SET_HEIGHT = 'SET_HEIGHT';
 export const SET_MIRROR = 'SET_MIRROR';
 export const SET_TYPE_FACE = 'SET_TYPE_FACE';
+export const SET_CONTROL_PANEL_SIZE = 'SET_CONTROL_PANEL_SIZE';

@@ -109,7 +109,7 @@ class MainScreen extends Component {
     }
 
     render(){
-        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position, fontSize, mirror, typeFace} = this.props;
+        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position, fontSize, mirror, typeFace, controlPanelSize} = this.props;
         //alert(`Color : ${color}, Background Color: ${backgroundColor}`)
         return(
             <View>
@@ -147,12 +147,24 @@ class MainScreen extends Component {
                             <Text style={styles.inputLabel}>Font</Text>
                             <Picker 
                                 selectedValue={typeFace}
-                                style={{height: 50, width: 100, marginBottom: 100, marginTop: -30}}
+                                style={{height: 50, width: 200, marginBottom: 100, marginTop: -30}}
                                 onValueChange={(itemValue, itemIndex) =>
                                     this.updateTypeFace(itemValue)
                                 }>
                                 <Picker.Item label="Sans Serif" value="sans serif" />
                                 <Picker.Item label="Serif" value="serif" />
+                            </Picker>
+                            <View style={{width: "100%", height: 20}}></View>
+                            <Text style={styles.inputLabel}>Control Panel Layout</Text>
+                            <Picker 
+                                selectedValue={controlPanelSize}
+                                style={{height: 50, width: 200, marginBottom: 100, marginTop: -30}}
+                                onValueChange={(itemValue, itemIndex) =>
+                                    this.props.setControlPanelSize(itemValue)
+                                }>
+                                <Picker.Item label="Dense" value="dense" />
+                                <Picker.Item label="Moderate Spacing" value="moderate" />
+                                <Picker.Item label="Sparse" value="sparse" />
                             </Picker>
                         </ScrollView>
                     </Modal>

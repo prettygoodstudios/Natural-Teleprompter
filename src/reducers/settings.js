@@ -1,5 +1,5 @@
 import { secondaryBlack, offWhite } from "../styles";
-import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE, SET_MIRROR, SET_TYPE_FACE } from "../actions/types";
+import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE, SET_MIRROR, SET_TYPE_FACE, SET_CONTROL_PANEL_SIZE } from "../actions/types";
 
 
 const INIT_STATE = {
@@ -10,7 +10,8 @@ const INIT_STATE = {
     settingsModal: false,
     fontSize: 30,
     mirror: false,
-    typeFace: "sans serif"
+    typeFace: "sans serif",
+    controlPanelSize: "dense"
 }
 
 export default function(state = INIT_STATE, action){
@@ -67,6 +68,11 @@ export default function(state = INIT_STATE, action){
             return{
                 ...state,
                 typeFace: action.payload
+            }
+        case SET_CONTROL_PANEL_SIZE:
+            return{
+                ...state,
+                controlPanelSize: action.payload
             }
         default:
             return{
