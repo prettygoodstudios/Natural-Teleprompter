@@ -58,6 +58,10 @@ const styles = StyleSheet.create({
        color: offWhite,
        fontSize: 20,
        textAlign: "center"
+   },
+   loadingWrapper: {
+       justifyContent: "center",
+       alignItems: "center"
    }
 });
 

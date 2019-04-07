@@ -1,8 +1,9 @@
 import React, {Component} from "react";
-import {View, Text, ScrollView, TextInput, Slider, Dimensions, Switch} from "react-native";
+import {View, Text, ScrollView, TextInput, Slider, Dimensions, Switch, Picker} from "react-native";
 import Recording from 'react-native-recording';
 import {connect} from 'react-redux';
 import {TriangleColorPicker} from 'react-native-color-picker';
+
 
 import styles from "../styles";
 import * as actions from "../actions";
@@ -101,15 +102,21 @@ class MainScreen extends Component {
         this.props.setPosition(-this.props.position, 1);
     }
 
+    updateTypeFace = (val) => {
+        this.props.setTypeFace(val);
+        this.props.setDirection(0);
+        this.props.setPosition(-this.props.position, 1);
+    }
+
     render(){
-        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position, fontSize, mirror} = this.props;
+        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position, fontSize, mirror, typeFace} = this.props;
         //alert(`Color : ${color}, Background Color: ${backgroundColor}`)
         return(
             <View>
                 <HeaderComponent />
                 <ControlPanelComponent />
                 <View style={[styles.container, {backgroundColor}]}>
-                    <Text style={[styles.h1, {color}, {marginTop: -position}, {fontSize}, mirror && {transform: [{rotateY: '180deg'}]}]} onLayout={(event) => this.props.setHeight(event.nativeEvent.layout.height)}>{text}</Text>
+                    <Text style={[styles.h1, {color}, {marginTop: -position}, {fontSize}, mirror && {transform: [{rotateY: '180deg'}]}, typeFace == "sans serif" ? {fontFamily: 'open-sans-bold'} : {fontFamily: 'amiri-bold'}]} onLayout={(event) => this.props.setHeight(event.nativeEvent.layout.height)}>{text}</Text>
                 </View>
                 {   settingsModal &&
                     <Modal dismiss={toggleSettingsModal} title="Settings">
@@ -136,6 +143,17 @@ class MainScreen extends Component {
                             <View style={{width: "100%", height: 20}}></View>
                             <Text style={styles.inputLabel}>Mirror Text</Text>
                             <Switch value={mirror} onValueChange={(v) => this.updateMirror(v)}/>
+                            <View style={{width: "100%", height: 20}}></View>
+                            <Text style={styles.inputLabel}>Font</Text>
+                            <Picker 
+                                selectedValue={typeFace}
+                                style={{height: 50, width: 100, marginBottom: 100, marginTop: -30}}
+                                onValueChange={(itemValue, itemIndex) =>
+                                    this.updateTypeFace(itemValue)
+                                }>
+                                <Picker.Item label="Sans Serif" value="sans serif" />
+                                <Picker.Item label="Serif" value="serif" />
+                            </Picker>
                         </ScrollView>
                     </Modal>
                 }

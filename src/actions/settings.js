@@ -1,5 +1,5 @@
 import {AsyncStorage} from  "react-native";
-import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE, SET_MIRROR } from "./types";
+import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE, SET_MIRROR, SET_TYPE_FACE } from "./types";
 import { back } from "react-native/Libraries/Animated/src/Easing";
 
 //Setting Keys
@@ -9,6 +9,7 @@ const COLOR = 'TELEPROMPTER_COLOR';
 const BACKGROUND_COLOR = 'TELEPROMPTER_BACKGROUND_COLOR';
 const FONT_SIZE = 'FONT_SIZE';
 const MIRROR = 'MIRROR';
+const TYPE_FACE = 'TYPE_FACE';
 
 const getKey = async (key) => {
     try {
@@ -95,6 +96,14 @@ export const setMirror = (val) => {
         payload: val
     }
 }
+
+export const setTypeFace = (val) => {
+    storeData(MIRROR, val.toString());
+    return{
+        type: SET_TYPE_FACE,
+        payload: val
+    }
+}   
 
 
 const storeData = async (key, value) => {

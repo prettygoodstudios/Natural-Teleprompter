@@ -1,5 +1,5 @@
 import { secondaryBlack, offWhite } from "../styles";
-import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE, SET_MIRROR } from "../actions/types";
+import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE, SET_MIRROR, SET_TYPE_FACE } from "../actions/types";
 
 
 const INIT_STATE = {
@@ -9,7 +9,8 @@ const INIT_STATE = {
     color: offWhite,
     settingsModal: false,
     fontSize: 30,
-    mirror: false
+    mirror: false,
+    typeFace: "sans serif"
 }
 
 export default function(state = INIT_STATE, action){
@@ -61,6 +62,11 @@ export default function(state = INIT_STATE, action){
             return{
                 ...state,
                 mirror: action.payload
+            }
+        case SET_TYPE_FACE:
+            return{
+                ...state,
+                typeFace: action.payload
             }
         default:
             return{
