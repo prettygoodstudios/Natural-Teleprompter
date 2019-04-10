@@ -19,7 +19,7 @@ export const analyzeAudio = (stream) => {
 export const decideToPauseOrStart = (lastSound) => {
     return function(dispatch){
         const diff = Date.now() - lastSound;
-        if(diff > 1000){
+        if(diff > 150){
             dispatch(setDirection(0));
         }else{
             dispatch(setDirection(1));
