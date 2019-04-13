@@ -27,6 +27,10 @@ export default StyleSheet.create({
        justifyContent: "center",
        marginLeft: 20
    },
+   headerButtonIcon:{
+        width: 40,
+        height: 40
+   },
    headerButtonText: {
        color: offWhite,
        fontSize: 20

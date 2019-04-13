@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text, TouchableOpacity} from "react-native";
+import {View, Text, TouchableOpacity, Image} from "react-native";
 
 import styles from "../styles/modal";
 
@@ -12,7 +12,7 @@ const Modal = (props) => {
                     <Text style={styles.modalTitle}>{title}</Text>
                     <TouchableOpacity onPress={() => dismiss()}>
                         <View>
-                            <Text style={styles.modalDismiss}>X</Text>
+                            <Image source={require("../../assets/images/close.png")} style={{width: 40, height: 40}}/>
                         </View>
                     </TouchableOpacity>
                 </View>

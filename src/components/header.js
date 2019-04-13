@@ -1,9 +1,10 @@
 import React, {Component} from "react";
-import {View, Text, TouchableOpacity} from "react-native";
+import {View, Text, TouchableOpacity, Image} from "react-native";
 import {connect} from 'react-redux';
 
 import styles from "../styles/header";
 import * as actions from "../actions";
+import { isRequired } from "react-native/Libraries/StyleSheet/ColorPropType";
 
 
 
@@ -12,7 +13,7 @@ const HeaderButton = (props) => {
     return(
         <TouchableOpacity onPress={() => onPress()}>
             <View style={styles.headerButton}>
-                <Text style={styles.headerButtonText}>{content}</Text>
+                {content}
             </View>
         </TouchableOpacity>
     );
@@ -27,8 +28,8 @@ class HeaderComponent extends Component {
                 <View style={styles.header}>
                     <Text style={styles.headerTitle}>Natural Teleprompter</Text>
                     <View style={styles.headerButtonContainer}>
-                        <HeaderButton content="Edit Text" onPress={() => this.props.toggleTextModal()}/>
-                        <HeaderButton content="Settings" onPress={() => this.props.toggleSettingsModal()}/>
+                        <HeaderButton content={<Image source={require('../../assets/images/headericons/pencil.png')} style={styles.headerButtonIcon}/>} onPress={() => this.props.toggleTextModal()}/>
+                        <HeaderButton content={<Image source={require('../../assets/images/headericons/settings.png')} style={styles.headerButtonIcon}/>} onPress={() => this.props.toggleSettingsModal()}/>
                     </View>
                 </View>
             </View>

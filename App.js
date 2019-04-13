@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { Provider, connect } from 'react-redux';
 import reduxThunk from "redux-thunk";
 import { createLogger } from 'redux-logger';
@@ -39,7 +39,7 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        {this.state.fontsLoaded ? <MainScreen /> : <View style={styles.loadingWrapper}><Text>Loading...</Text></View>}
+        {this.state.fontsLoaded ? <MainScreen /> : <View style={styles.loadingWrapper}><Image source={require("./assets/splash.png")} style={{height: "100%", width: 300, resizeMode: "contain"}} /></View>}
       </Provider>
     );
   }

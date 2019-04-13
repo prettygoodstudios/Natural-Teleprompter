@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity} from "react-native";
+import {View, Text, TouchableOpacity, Image} from "react-native";
 import {connect} from 'react-redux';
 
 import styles from "../styles/controlPanel";
 import * as actions from "../actions";
 import calculateTextHeight from '../helpers/height';
+import { isRequired } from 'react-native/Libraries/StyleSheet/ColorPropType';
 
 const controlPanelSizes = {
     dense: {
@@ -40,7 +41,7 @@ const ControlPanelItem = (props) => {
     return(
         <TouchableOpacity onPress={() => onPress()}>
             <View style={[styles.controlPanelItem, itemStyles]}>
-                <Text style={[styles.controlPanelItemText, textStyles]}>{content}</Text>  
+                {content}
             </View>
         </TouchableOpacity>
     )
@@ -68,13 +69,14 @@ class ControlPanelComponent extends Component {
 
     render(){
         const {position, text, height, fontSize, controlPanelSize} = this.props;
+        const imageSize = controlPanelSizes[controlPanelSize].fontSize;
         return(
             <View style={[styles.controlPanel, {height: controlPanelSizes[controlPanelSize].height}]}>
-                <ControlPanelItem content="<<" onPress={() => this.setPosition(-position, 1)} size={controlPanelSize}/>
-                <ControlPanelItem content="<" onPress={() => this.props.setDirection(-1)} size={controlPanelSize}/>
-                <ControlPanelItem content={this.props.direction == 0 ? ">" : "||"} onPress={() => this.togglePause()} size={controlPanelSize}/>
-                <ControlPanelItem content=">" onPress={() => this.props.setDirection(1)} size={controlPanelSize}/>
-                <ControlPanelItem content=">>" onPress={() => this.setTop()} size={controlPanelSize}/>
+                <ControlPanelItem content={<Image source={require("../../assets/images/mediacontrols/gotostart.png")} style={{width: imageSize, height: imageSize, resizeMode: "contain"}}/>} onPress={() => this.setPosition(-position, 1)} size={controlPanelSize}/>
+                <ControlPanelItem content={<Image source={require("../../assets/images/mediacontrols/gobackward.png")} style={{width: imageSize, height: imageSize, resizeMode: "contain"}}/>} onPress={() => this.props.setDirection(-1)} size={controlPanelSize}/>
+                <ControlPanelItem content={this.props.direction == 0 ? <Image source={require("../../assets/images/mediacontrols/start.png")} style={{width: imageSize, height: imageSize, resizeMode: "contain"}}/> : <Image source={require("../../assets/images/mediacontrols/pause.png")} style={{width: imageSize, height: imageSize}}/>} onPress={() => this.togglePause()} size={controlPanelSize}/>
+                <ControlPanelItem content={<Image source={require("../../assets/images/mediacontrols/goforward.png")} style={{width: imageSize, height: imageSize, resizeMode: "contain"}}/>}  onPress={() => this.props.setDirection(1)} size={controlPanelSize}/>
+                <ControlPanelItem content={<Image source={require("../../assets/images/mediacontrols/gotoend.png")} style={{width: imageSize, height: imageSize, resizeMode: "contain"}}/>}  onPress={() => this.setTop()} size={controlPanelSize}/>
             </View>
         );
     }
