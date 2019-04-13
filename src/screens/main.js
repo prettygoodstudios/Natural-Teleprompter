@@ -14,6 +14,7 @@ import ControlPanelComponent from "../components/controlPanel";
 import Modal from "../components/modal";
 import Button from '../components/button';
 import Center from "../components/center";
+import CustomPicker from "../components/customPicker";
 
 
 
@@ -148,28 +149,10 @@ class MainScreen extends Component {
                             <Text>The telprompter will automatically start when it hears your voice and will automatically pause when it hears pauses in your voice.</Text>
                             <Switch value={smartMode} onValueChange={(v) => this.props.setSmartMode(v)}/>
                             <View style={{width: "100%", height: 20}}></View>
-                            <Text style={styles.inputLabel}>Font</Text>
-                            <Picker 
-                                selectedValue={typeFace}
-                                style={{height: 50, width: 200, marginBottom: 100, marginTop: -30}}
-                                onValueChange={(itemValue, itemIndex) =>
-                                    this.updateTypeFace(itemValue)
-                                }>
-                                <Picker.Item label="Sans Serif" value="sans serif" />
-                                <Picker.Item label="Serif" value="serif" />
-                            </Picker>
+                            <CustomPicker title="Font" items={[{value: "sans serif", label: "Sans Serif"}, {value: "serif", label: "Serif"}]} onUpdate={(value) => this.updateTypeFace(value)} value={typeFace}/>
                             <View style={{width: "100%", height: 20}}></View>
-                            <Text style={styles.inputLabel}>Control Panel Layout</Text>
-                            <Picker 
-                                selectedValue={controlPanelSize}
-                                style={{height: 50, width: 200, marginBottom: 100, marginTop: -30}}
-                                onValueChange={(itemValue, itemIndex) =>
-                                    this.props.setControlPanelSize(itemValue)
-                                }>
-                                <Picker.Item label="Dense" value="dense" />
-                                <Picker.Item label="Moderate Spacing" value="moderate" />
-                                <Picker.Item label="Sparse" value="sparse" />
-                            </Picker>
+                            <CustomPicker value={controlPanelSize} title="Control Layout" items={[{value: "dense", label: "Dense"}, {value: "moderate", label: "Moderate Spacing"}, {value: "sparse", label: "Sparse"}]} onUpdate={(value) => this.props.setControlPanelSize(value)}/>
+                            <View style={{width: "100%", height: 200}}></View>
                         </ScrollView>
                     </Modal>
                 }
