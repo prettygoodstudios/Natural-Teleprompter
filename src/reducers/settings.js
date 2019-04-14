@@ -18,17 +18,19 @@ const INIT_STATE = {
 export default function(state = INIT_STATE, action){
     switch(action.type){
         case RETRIEVE_SETTINGS:
-            const {speed, direction, backgroundColor, color} = action.payload;
+            const {speed, direction, backgroundColor, color, fontSize, typeFace, mirror, controlPanelSize, smartMode} = action.payload;
             const nullVal = {_40: 1, _65: 1, _55: null, _72: null};
             return{
-                ...state
-            }
-            return{
                 ...state,
-                speed: speed !== nullVal ? speed : state.speed,
-                direction: direction !== nullVal ? direction : state.direction,
-                backgroundColor: backgroundColor != nullVal ? backgroundColor : state.backgroundColor,
-                color: color !== nullVal ? color : state.color
+                speed: speed ? parseFloat(speed) : state.speed,
+                direction: direction ? parseFloat(direction) : state.direction,
+                backgroundColor: backgroundColor ? backgroundColor : state.backgroundColor,
+                color: color ? color : state.color,
+                fontSize: fontSize ? parseFloat(fontSize) : state.fontSize,
+                typeFace: typeFace ? typeFace : state.typeFace,
+                mirror: mirror ? (mirror === "true") : state.mirror,
+                controlPanelSize: controlPanelSize ? controlPanelSize : state.controlPanelSize,
+                smartMode: smartMode ? (smartMode === "true") : state.smartMode
             }
         case TOGGLE_SETTINGS_MODAL:
             return{

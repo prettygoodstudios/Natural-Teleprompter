@@ -16,6 +16,7 @@ const SMART_MODE = 'SMART_MODE';
 const getKey = async (key) => {
     try {
         const value = await AsyncStorage.getItem(key);
+        console.log(`My Value For ${key} Is ${value}`);
         return value;
     } catch (error) {
         return {error};
@@ -24,22 +25,38 @@ const getKey = async (key) => {
 
 export const retrieveSavedSettings = () => {
     return async function(dispatch){
-        const speed = getKey(SPEED);
-        const direction = getKey(DIRECTION);
-        const color = getKey(COLOR)
-        const backgroundColor = getKey(BACKGROUND_COLOR);
-        await speed;
-        await direction;
-        await color;
-        await backgroundColor;
-        console.log(color)
+        const speed = await getKey(SPEED);
+        const direction = await getKey(DIRECTION);
+        const color = await getKey(COLOR)
+        const backgroundColor = await getKey(BACKGROUND_COLOR);
+        const fontSize = await getKey(FONT_SIZE);
+        const typeFace = await getKey(TYPE_FACE);
+        const mirror = await getKey(MIRROR);
+        const smartMode = await getKey(SMART_MODE);
+        const controlPanelSize = await getKey(CONTROL_PANEL_SIZE);
+        console.log("My Saved Settings", {
+            speed,
+            direction,
+            color,
+            backgroundColor,
+            fontSize,
+            typeFace,
+            mirror,
+            smartMode,
+            controlPanelSize
+        });
         dispatch({
             type: RETRIEVE_SETTINGS,
             payload: {
                 speed,
                 direction,
                 color,
-                backgroundColor
+                backgroundColor,
+                fontSize,
+                typeFace,
+                mirror,
+                smartMode,
+                controlPanelSize
             }
         });
     }
@@ -100,7 +117,7 @@ export const setMirror = (val) => {
 }
 
 export const setTypeFace = (val) => {
-    storeData(MIRROR, val.toString());
+    storeData(TYPE_FACE, val.toString());
     return{
         type: SET_TYPE_FACE,
         payload: val
