@@ -26,7 +26,13 @@
       "supportsTablet": true,
       "bundleIdentifier": "natural-teleprompter-ios",
       "publishBundlePath": "ios/natural-teleprompter/Supporting/shell-app.bundle",
-      "publishManifestPath": "ios/natural-teleprompter/Supporting/shell-app-manifest.json"
+      "publishManifestPath": "ios/natural-teleprompter/Supporting/shell-app-manifest.json",
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "permissions",
+          "asyncstorage"
+        ]
+      }
     },
     "android": {
       "package": "naturaral.teleprompter.android",
