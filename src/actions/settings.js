@@ -1,5 +1,5 @@
 import {AsyncStorage} from  "react-native";
-import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE, SET_MIRROR, SET_TYPE_FACE, SET_CONTROL_PANEL_SIZE, SET_SMART_MODE, SET_SELFIE_MODE } from "./types";
+import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE, SET_MIRROR, SET_TYPE_FACE, SET_CONTROL_PANEL_SIZE, SET_SMART_MODE, SET_SELFIE_MODE, SET_SELFIE_MASK_OPACITY } from "./types";
 import { back } from "react-native/Libraries/Animated/src/Easing";
 
 //Setting Keys
@@ -13,6 +13,7 @@ const TYPE_FACE = 'TYPE_FACE';
 const CONTROL_PANEL_SIZE = 'CONTROL_PANEL_SIZE';
 const SMART_MODE = 'SMART_MODE';
 const SELFIE_MODE = 'SELFIE_MODE';
+const SELFIE_MASK_OPACITY = 'SELFIE_MASK_OPACITY';
 
 const getKey = async (key) => {
     try {
@@ -35,6 +36,8 @@ export const retrieveSavedSettings = () => {
         const mirror = await getKey(MIRROR);
         const smartMode = await getKey(SMART_MODE);
         const controlPanelSize = await getKey(CONTROL_PANEL_SIZE);
+        const selfieMode = await getKey(SELFIE_MODE);
+        const selfieMaskOpacity = await getKey(SELFIE_MASK_OPACITY);
         console.log("My Saved Settings", {
             speed,
             direction,
@@ -44,7 +47,9 @@ export const retrieveSavedSettings = () => {
             typeFace,
             mirror,
             smartMode,
-            controlPanelSize
+            controlPanelSize,
+            selfieMode,
+            selfieMaskOpacity
         });
         dispatch({
             type: RETRIEVE_SETTINGS,
@@ -57,7 +62,9 @@ export const retrieveSavedSettings = () => {
                 typeFace,
                 mirror,
                 smartMode,
-                controlPanelSize
+                controlPanelSize,
+                selfieMode,
+                selfieMaskOpacity
             }
         });
     }
@@ -145,6 +152,14 @@ export const setSelfieMode = (val) => {
     storeData(SELFIE_MODE, val.toString());
     return{
         type: SET_SELFIE_MODE,
+        payload: val
+    }
+}
+
+export const setSelfieMaskOpacity = (val) => {
+    storeData(SELFIE_MASK_OPACITY, val.toString());
+    return{
+        type: SET_SELFIE_MASK_OPACITY,
         payload: val
     }
 }

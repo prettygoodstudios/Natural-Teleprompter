@@ -116,7 +116,7 @@ class MainScreen extends Component {
     }
 
     render(){
-        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position, fontSize, mirror, typeFace, controlPanelSize, smartMode, selfieMode} = this.props;
+        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position, fontSize, mirror, typeFace, controlPanelSize, smartMode, selfieMode, selfieMaskOpacity} = this.props;
         //alert(`Color : ${color}, Background Color: ${backgroundColor}`)
         return(
             <View>
@@ -124,6 +124,7 @@ class MainScreen extends Component {
                 <ControlPanelComponent />
                 <View style={[styles.container, {backgroundColor}]}>
                     <Text style={[styles.h1, {color}, {marginTop: -position}, {fontSize}, mirror && {transform: [{rotateY: '180deg'}]}, typeFace == "sans serif" ? {fontFamily: 'open-sans-bold'} : {fontFamily: 'amiri-bold'}]} onLayout={(event) => this.props.setHeight(event.nativeEvent.layout.height)}>{text}</Text>
+                    <View style={[styles.cameraMask, selfieMode ?  {} : {display: "none"}, {backgroundColor: `rgba(0, 0, 0, ${parseInt(selfieMaskOpacity*100)/100})`}]}></View>
                     <Camera style={[styles.camera, selfieMode ?  {} : {display: "none"}]} type={Camera.Constants.Type.front}>
                         <View
                         style={{
@@ -165,6 +166,13 @@ class MainScreen extends Component {
                             <View style={{width: "100%", height: 20}}></View>
                             <Text style={styles.inputLabel}>Selfie Mode</Text>
                             <Switch value={selfieMode} onValueChange={(v) => this.props.setSelfieMode(v)}/>
+                            <View style={{width: "100%", height: 20}}></View>
+                            {   selfieMode &&
+                                <View>
+                                    <Text style={styles.inputLabel}>Selfie Text Background Mask Opacity</Text>
+                                    <Slider minimumValue={0} maximumValue={1} value={selfieMaskOpacity} onSlidingComplete={(v) => this.props.setSelfieMaskOpacity(v)}/>
+                                </View>
+                            }
                             <View style={{width: "100%", height: 20}}></View>
                             <CustomPicker title="Font" items={[{value: "sans serif", label: "Sans Serif"}, {value: "serif", label: "Serif"}]} onUpdate={(value) => this.updateTypeFace(value)} value={typeFace}/>
                             <View style={{width: "100%", height: 20}}></View>
