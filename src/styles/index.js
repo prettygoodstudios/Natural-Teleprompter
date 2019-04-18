@@ -62,6 +62,15 @@ const styles = StyleSheet.create({
    loadingWrapper: {
        justifyContent: "center",
        alignItems: "center"
+   },
+   camera: {
+       position: "absolute",
+       left: 0,
+       top: 0,
+       width: width + 20,
+       height: height - 140,
+       margin: -20,
+       zIndex: -1
    }
 });
 

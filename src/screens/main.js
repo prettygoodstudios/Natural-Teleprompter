@@ -1,8 +1,10 @@
 import React, {Component} from "react";
 import {View, Text, ScrollView, TextInput, Slider, Dimensions, Switch, Picker} from "react-native";
 import Recording from 'react-native-recording';
+import RNSoundLevel from 'react-native-sound-level'
 import {connect} from 'react-redux';
 import {TriangleColorPicker} from 'react-native-color-picker';
+import {Camera} from "expo";
 
 
 import styles from "../styles";
@@ -17,10 +19,6 @@ import Center from "../components/center";
 import CustomPicker from "../components/customPicker";
 
 
-
-function analyzeAudio(stream){
-    return (stream.reduce((a,b) => a+b)/stream.length) < -100 ? "Loud" : "Soft";
-}
 
 const maxFPS = 60;
 let lastFrameTimeMS = 0;
@@ -40,6 +38,7 @@ class MainScreen extends Component {
     componentDidMount(){
         this.props.retrieveSavedSettings();
         this.animationFrameId = requestAnimationFrame(this.animateText);
+        
         Recording.init({
             bufferSize: 4096,
             sampleRate: 44100,
@@ -48,7 +47,13 @@ class MainScreen extends Component {
         });
         Recording.addRecordingEventListener(data => this.props.analyzeAudio(data));
         Recording.start()
-          
+       /*
+       RNSoundLevel.start()
+       RNSoundLevel.onNewFrame = (data) => {
+            // see "Returned data" section below
+            console.log('Sound level info', data)
+        }
+        */
     }
 
     animateText = (timestamp) => {
@@ -111,7 +116,7 @@ class MainScreen extends Component {
     }
 
     render(){
-        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position, fontSize, mirror, typeFace, controlPanelSize, smartMode} = this.props;
+        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position, fontSize, mirror, typeFace, controlPanelSize, smartMode, selfieMode} = this.props;
         //alert(`Color : ${color}, Background Color: ${backgroundColor}`)
         return(
             <View>
@@ -119,10 +124,19 @@ class MainScreen extends Component {
                 <ControlPanelComponent />
                 <View style={[styles.container, {backgroundColor}]}>
                     <Text style={[styles.h1, {color}, {marginTop: -position}, {fontSize}, mirror && {transform: [{rotateY: '180deg'}]}, typeFace == "sans serif" ? {fontFamily: 'open-sans-bold'} : {fontFamily: 'amiri-bold'}]} onLayout={(event) => this.props.setHeight(event.nativeEvent.layout.height)}>{text}</Text>
+                    <Camera style={[styles.camera, selfieMode ?  {} : {display: "none"}]} type={Camera.Constants.Type.front}>
+                        <View
+                        style={{
+                            flex: 1,
+                            backgroundColor: 'transparent',
+                            flexDirection: 'row',
+                        }}>
+                        </View>
+                    </Camera>
                 </View>
                 {   settingsModal &&
                     <Modal dismiss={toggleSettingsModal} title="Settings">
-                        <ScrollView>
+                        <ScrollView >
                             <Text style={styles.inputLabel}>Font Color</Text>
                             <TriangleColorPicker
                                 onColorSelected={color => this.props.setColor(color)}
@@ -148,6 +162,9 @@ class MainScreen extends Component {
                             <Text style={styles.inputLabel}>Smart Pause Mode</Text>
                             <Text>The telprompter will automatically start when it hears your voice and will automatically pause when it hears pauses in your voice.</Text>
                             <Switch value={smartMode} onValueChange={(v) => this.props.setSmartMode(v)}/>
+                            <View style={{width: "100%", height: 20}}></View>
+                            <Text style={styles.inputLabel}>Selfie Mode</Text>
+                            <Switch value={selfieMode} onValueChange={(v) => this.props.setSelfieMode(v)}/>
                             <View style={{width: "100%", height: 20}}></View>
                             <CustomPicker title="Font" items={[{value: "sans serif", label: "Sans Serif"}, {value: "serif", label: "Serif"}]} onUpdate={(value) => this.updateTypeFace(value)} value={typeFace}/>
                             <View style={{width: "100%", height: 20}}></View>

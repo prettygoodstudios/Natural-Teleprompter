@@ -4,9 +4,7 @@ import {setDirection} from "./settings";
 
 export const analyzeAudio = (stream) => {
     return function(dispatch){
-        
         const streamMeanVolume = stream[0] ? stream.reduce((a, b) => a+b)/stream.length : 0;
-        //console.log(stream)
         if(streamMeanVolume > 1){
             console.log("Loud", streamMeanVolume);
             dispatch({

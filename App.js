@@ -4,7 +4,7 @@ import { Provider, connect } from 'react-redux';
 import reduxThunk from "redux-thunk";
 import { createLogger } from 'redux-logger';
 import { createStore, applyMiddleware, compose } from 'redux';
-import {Font} from "expo";
+import {Font, Permissions} from "expo";
 
 
 import reducers from './src/reducers';
@@ -20,7 +20,8 @@ export default class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      fontsLoaded: false
+      fontsLoaded: false,
+      hasCameraPermission: false
     }
   }
 
@@ -34,12 +35,17 @@ export default class App extends React.Component {
     });
 
     this.setState({fontsLoaded: true});
+
+    const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    this.setState({ hasCameraPermission: status === 'granted' });
   }
 
   render() {
+    const {fontsLoaded, hasCameraPermission} = this.state;
+
     return (
       <Provider store={store}>
-        {this.state.fontsLoaded ? <MainScreen /> : <View style={styles.loadingWrapper}><Image source={require("./assets/splash.png")} style={{height: "100%", width: 300, resizeMode: "contain"}} /></View>}
+        {fontsLoaded && hasCameraPermission ? <MainScreen /> : <View style={styles.loadingWrapper}><Image source={require("./assets/splash.png")} style={{height: "100%", width: 300, resizeMode: "contain"}} /></View>}
       </Provider>
     );
   }
