@@ -16,6 +16,11 @@ const INIT_STATE = {
     selfieMode: false
 }
 
+/* TODO: 
+    *Build out camera text background mask color feature
+    *Build out camera text background mask opacity feature
+*/
+
 export default function(state = INIT_STATE, action){
     switch(action.type){
         case RETRIEVE_SETTINGS:

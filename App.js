@@ -38,6 +38,9 @@ export default class App extends React.Component {
 
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     this.setState({ hasCameraPermission: status === 'granted' });
+    if(status !== 'granted'){
+      alert("In order to use this app you must enable the camera permission.")
+    }
   }
 
   render() {
