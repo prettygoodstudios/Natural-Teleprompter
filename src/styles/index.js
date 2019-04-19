@@ -81,6 +81,31 @@ const styles = StyleSheet.create({
         margin: -20,
         zIndex: -1 ,
         backgroundColor: "rgba(0, 0, 0, 0.5)"
+   },
+   cameraRecord: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        backgroundColor: "red",
+        borderWidth: 5,
+        borderColor: offWhite,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center"
+   },
+   cameraRecordPosition: {
+        position: "absolute",
+        width: "100%",
+        bottom: 20,
+        left: 20,
+        flexDirection: "row",
+        justifyContent: "center"
+   },
+   cameraRecordPause: {
+        width: 30,
+        height: 30,
+        borderRadius: 3,
+        backgroundColor: offWhite
    }
 });
 

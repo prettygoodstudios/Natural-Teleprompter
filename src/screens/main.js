@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {View, Text, ScrollView, TextInput, Slider, Dimensions, Switch, Picker} from "react-native";
+import {View, Text, ScrollView, TextInput, Slider, Dimensions, Switch, TouchableOpacity} from "react-native";
 import Recording from 'react-native-recording';
 import RNSoundLevel from 'react-native-sound-level'
 import {connect} from 'react-redux';
@@ -43,8 +43,10 @@ class MainScreen extends Component {
         super();
         this.state = {
             textModalValue: "Enter your own text.",
-            textPosition: 0
+            textPosition: 0,
+            recording: false
         }
+        this.camera = null;
     }
 
     componentDidMount(){
@@ -127,6 +129,13 @@ class MainScreen extends Component {
         this.props.setPosition(-this.props.position, 1);
     }
 
+    recordVideo = async () => {
+        this.setState({recording: true});
+        const video = await this.camera.recordAsync();
+        this.setState({recording: false});
+        console.log("My Video", video);
+    }
+
     render(){
         const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position, fontSize, mirror, typeFace, controlPanelSize, smartMode, selfieMode, selfieMaskOpacity, selfieMaskColor} = this.props;
         //alert(`Color : ${color}, Background Color: ${backgroundColor}`)
@@ -137,7 +146,18 @@ class MainScreen extends Component {
                 <View style={[styles.container, {backgroundColor}]}>
                     <Text style={[styles.h1, {color}, {marginTop: -position}, {fontSize}, mirror && {transform: [{rotateY: '180deg'}]}, typeFace == "sans serif" ? {fontFamily: 'open-sans-bold'} : {fontFamily: 'amiri-bold'}]} onLayout={(event) => this.props.setHeight(event.nativeEvent.layout.height)}>{text}</Text>
                     <View style={[styles.cameraMask, selfieMode ?  {} : {display: "none"}, {backgroundColor: `rgba(${selfieMaskColor.join(", ")}, ${parseInt(selfieMaskOpacity*100)/100})`}]}></View>
-                    <Camera style={[styles.camera, selfieMode ?  {} : {display: "none"}]} type={Camera.Constants.Type.front}>
+                    <View style={styles.cameraRecordPosition}>
+                        <TouchableOpacity onPress={this.state.recording ? () => this.camera.stopRecording() : this.recordVideo}>
+                            <View style={[styles.cameraRecord, selfieMode ?  {} : {display: "none"}]}>
+                                {   this.state.recording && 
+                                    <View style={styles.cameraRecordPause}>
+
+                                    </View>
+                                }
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <Camera style={[styles.camera, selfieMode ?  {} : {display: "none"}]} type={Camera.Constants.Type.front} ref={ref => {this.camera = ref;}}>
                         <View
                         style={{
                             flex: 1,
