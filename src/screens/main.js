@@ -4,7 +4,7 @@ import Recording from 'react-native-recording';
 import RNSoundLevel from 'react-native-sound-level'
 import {connect} from 'react-redux';
 import {TriangleColorPicker} from 'react-native-color-picker';
-import {Camera} from "expo";
+import {Camera, FileSystem} from "expo";
 
 
 import styles from "../styles";
@@ -17,6 +17,7 @@ import Modal from "../components/modal";
 import Button from '../components/button';
 import Center from "../components/center";
 import CustomPicker from "../components/customPicker";
+import VideoModal from "./videoModal";
 
 
 
@@ -134,6 +135,7 @@ class MainScreen extends Component {
         const video = await this.camera.recordAsync();
         this.setState({recording: false});
         console.log("My Video", video);
+        this.props.openVideo(video.uri)
     }
 
     render(){
@@ -227,6 +229,7 @@ class MainScreen extends Component {
                         <Center><Button content="Update" onPress={() => this.sumbitTextModal()}/></Center>
                     </Modal>
                 }
+                <VideoModal />
             </View>
         )
     }
