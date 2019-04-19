@@ -12,6 +12,13 @@ import Modal from "../components/modal";
 
 class SettingsModal extends Component {
 
+    constructor(){
+        super();
+        this.state = {
+            scroll: true
+        }
+    }
+
     updateFontSize = (size) => {
         this.props.setFontSize(size);
         this.props.setDirection(0);
@@ -41,19 +48,25 @@ class SettingsModal extends Component {
 
         return(
             <Modal dismiss={toggleSettingsModal} title="Settings">
-                <ScrollView >
+                <ScrollView scrollEnabled={this.state.scroll} >
                     <Text style={styles.inputLabel}>Font Color</Text>
-                    <TriangleColorPicker
-                        onColorSelected={color => this.props.setColor(color)}
-                        defaultColor={color}
-                        style={{width: "100%", height: 300}}
-                    />
+                    <View>
+                        <TriangleColorPicker
+                            onColorSelected={color => this.props.setColor(color)}
+                            defaultColor={color}
+                            style={{width: "100%", height: 300}}
+                            onTouch={() => this.setState({scroll: false})}
+                            onLeave={() => this.setState({scroll: true})}
+                        />
+                    </View>
                     <Text>*Touch Bottom Bar To Confirm Selection</Text>
                     <Text style={styles.inputLabel}>Background Color</Text>
                     <TriangleColorPicker
                         onColorSelected={color => this.props.setBackgroundColor(color)}
                         defaultColor={backgroundColor}
                         style={{width: "100%", height: 300}}
+                        onTouch={() => this.setState({scroll: false})}
+                        onLeave={() => this.setState({scroll: true})}
                     />
                     <Text>*Touch Bottom Bar To Confirm Selection</Text>
                     <Text style={styles.inputLabel}>Speed</Text>
@@ -80,6 +93,8 @@ class SettingsModal extends Component {
                                 onColorSelected={color => this.props.setSelfieMaskColor(hexToRgb(color))}
                                 defaultColor={rgbToHex(...selfieMaskColor)}
                                 style={{width: "100%", height: 300}}
+                                onTouch={() => this.setState({scroll: false})}
+                                onLeave={() => this.setState({scroll: true})}
                             />
                             <Text>*Touch Bottom Bar To Confirm Selection</Text>
                         </View>
