@@ -25,6 +25,18 @@ let lastFrameTimeMS = 0;
 let deltaTime = 0;
 
 
+function hexToRgb(hex) {
+    var bigint = parseInt(hex.replace("#", ""), 16);
+    var r = (bigint >> 16) & 255;
+    var g = (bigint >> 8) & 255;
+    var b = bigint & 255;
+    return [r, g, b];
+}
+
+function rgbToHex(r, g, b) {
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+
 class MainScreen extends Component {
 
     constructor(){
@@ -116,7 +128,7 @@ class MainScreen extends Component {
     }
 
     render(){
-        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position, fontSize, mirror, typeFace, controlPanelSize, smartMode, selfieMode, selfieMaskOpacity} = this.props;
+        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position, fontSize, mirror, typeFace, controlPanelSize, smartMode, selfieMode, selfieMaskOpacity, selfieMaskColor} = this.props;
         //alert(`Color : ${color}, Background Color: ${backgroundColor}`)
         return(
             <View>
@@ -124,7 +136,7 @@ class MainScreen extends Component {
                 <ControlPanelComponent />
                 <View style={[styles.container, {backgroundColor}]}>
                     <Text style={[styles.h1, {color}, {marginTop: -position}, {fontSize}, mirror && {transform: [{rotateY: '180deg'}]}, typeFace == "sans serif" ? {fontFamily: 'open-sans-bold'} : {fontFamily: 'amiri-bold'}]} onLayout={(event) => this.props.setHeight(event.nativeEvent.layout.height)}>{text}</Text>
-                    <View style={[styles.cameraMask, selfieMode ?  {} : {display: "none"}, {backgroundColor: `rgba(0, 0, 0, ${parseInt(selfieMaskOpacity*100)/100})`}]}></View>
+                    <View style={[styles.cameraMask, selfieMode ?  {} : {display: "none"}, {backgroundColor: `rgba(${selfieMaskColor.join(", ")}, ${parseInt(selfieMaskOpacity*100)/100})`}]}></View>
                     <Camera style={[styles.camera, selfieMode ?  {} : {display: "none"}]} type={Camera.Constants.Type.front}>
                         <View
                         style={{
@@ -171,6 +183,13 @@ class MainScreen extends Component {
                                 <View>
                                     <Text style={styles.inputLabel}>Selfie Text Background Mask Opacity</Text>
                                     <Slider minimumValue={0} maximumValue={1} value={selfieMaskOpacity} onSlidingComplete={(v) => this.props.setSelfieMaskOpacity(v)}/>
+                                    <Text style={styles.inputLabel}>Background Text Background Mask Color</Text>
+                                    <TriangleColorPicker
+                                        onColorSelected={color => this.props.setSelfieMaskColor(hexToRgb(color))}
+                                        defaultColor={rgbToHex(...selfieMaskColor)}
+                                        style={{width: "100%", height: 300}}
+                                    />
+                                    <Text>*Touch Bottom Bar To Confirm Selection</Text>
                                 </View>
                             }
                             <View style={{width: "100%", height: 20}}></View>

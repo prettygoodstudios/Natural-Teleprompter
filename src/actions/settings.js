@@ -1,5 +1,5 @@
 import {AsyncStorage} from  "react-native";
-import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE, SET_MIRROR, SET_TYPE_FACE, SET_CONTROL_PANEL_SIZE, SET_SMART_MODE, SET_SELFIE_MODE, SET_SELFIE_MASK_OPACITY } from "./types";
+import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE, SET_MIRROR, SET_TYPE_FACE, SET_CONTROL_PANEL_SIZE, SET_SMART_MODE, SET_SELFIE_MODE, SET_SELFIE_MASK_OPACITY, SET_SELFIE_MASK_COLOR } from "./types";
 import { back } from "react-native/Libraries/Animated/src/Easing";
 
 //Setting Keys
@@ -14,6 +14,7 @@ const CONTROL_PANEL_SIZE = 'CONTROL_PANEL_SIZE';
 const SMART_MODE = 'SMART_MODE';
 const SELFIE_MODE = 'SELFIE_MODE';
 const SELFIE_MASK_OPACITY = 'SELFIE_MASK_OPACITY';
+const SELFIE_MASK_COLOR = 'SELFIE_MASK_COLOR';
 
 const getKey = async (key) => {
     try {
@@ -38,6 +39,7 @@ export const retrieveSavedSettings = () => {
         const controlPanelSize = await getKey(CONTROL_PANEL_SIZE);
         const selfieMode = await getKey(SELFIE_MODE);
         const selfieMaskOpacity = await getKey(SELFIE_MASK_OPACITY);
+        const selfieMaskColor = await getKey(SELFIE_MASK_COLOR);
         console.log("My Saved Settings", {
             speed,
             direction,
@@ -49,7 +51,8 @@ export const retrieveSavedSettings = () => {
             smartMode,
             controlPanelSize,
             selfieMode,
-            selfieMaskOpacity
+            selfieMaskOpacity,
+            selfieMaskColor
         });
         dispatch({
             type: RETRIEVE_SETTINGS,
@@ -64,7 +67,8 @@ export const retrieveSavedSettings = () => {
                 smartMode,
                 controlPanelSize,
                 selfieMode,
-                selfieMaskOpacity
+                selfieMaskOpacity,
+                selfieMaskColor
             }
         });
     }
@@ -160,6 +164,15 @@ export const setSelfieMaskOpacity = (val) => {
     storeData(SELFIE_MASK_OPACITY, val.toString());
     return{
         type: SET_SELFIE_MASK_OPACITY,
+        payload: val
+    }
+}
+
+export const setSelfieMaskColor = (val) => {
+    storeData(SELFIE_MASK_COLOR, val.toString());
+    console.log("Selfie Color",val);
+    return{
+        type: SET_SELFIE_MASK_COLOR,
         payload: val
     }
 }
