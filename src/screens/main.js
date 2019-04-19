@@ -9,15 +9,14 @@ import {Camera, FileSystem} from "expo";
 
 import styles from "../styles";
 import * as actions from "../actions";
-import calculateTextHeight from "../helpers/height";
 
 import HeaderComponent from "../components/header";
 import ControlPanelComponent from "../components/controlPanel";
 import Modal from "../components/modal";
 import Button from '../components/button';
 import Center from "../components/center";
-import CustomPicker from "../components/customPicker";
 import VideoModal from "./videoModal";
+import SettingsModal from "./settingsModal";
 
 
 
@@ -25,18 +24,6 @@ const maxFPS = 60;
 let lastFrameTimeMS = 0;
 let deltaTime = 0;
 
-
-function hexToRgb(hex) {
-    var bigint = parseInt(hex.replace("#", ""), 16);
-    var r = (bigint >> 16) & 255;
-    var g = (bigint >> 8) & 255;
-    var b = bigint & 255;
-    return [r, g, b];
-}
-
-function rgbToHex(r, g, b) {
-    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-}
 
 class MainScreen extends Component {
 
@@ -112,24 +99,6 @@ class MainScreen extends Component {
         this.props.toggleTextModal();
     }
 
-    updateFontSize = (size) => {
-        this.props.setFontSize(size);
-        this.props.setDirection(0);
-        this.props.setPosition(-this.props.position, 1);
-    }
-
-    updateMirror = (val) => {
-        this.props.setMirror(val);
-        this.props.setDirection(0);
-        this.props.setPosition(-this.props.position, 1);
-    }
-
-    updateTypeFace = (val) => {
-        this.props.setTypeFace(val);
-        this.props.setDirection(0);
-        this.props.setPosition(-this.props.position, 1);
-    }
-
     recordVideo = async () => {
         this.setState({recording: true});
         const video = await this.camera.recordAsync();
@@ -169,59 +138,7 @@ class MainScreen extends Component {
                         </View>
                     </Camera>
                 </View>
-                {   settingsModal &&
-                    <Modal dismiss={toggleSettingsModal} title="Settings">
-                        <ScrollView >
-                            <Text style={styles.inputLabel}>Font Color</Text>
-                            <TriangleColorPicker
-                                onColorSelected={color => this.props.setColor(color)}
-                                defaultColor={color}
-                                style={{width: "100%", height: 300}}
-                            />
-                            <Text>*Touch Bottom Bar To Confirm Selection</Text>
-                            <Text style={styles.inputLabel}>Background Color</Text>
-                            <TriangleColorPicker
-                                onColorSelected={color => this.props.setBackgroundColor(color)}
-                                defaultColor={backgroundColor}
-                                style={{width: "100%", height: 300}}
-                            />
-                            <Text>*Touch Bottom Bar To Confirm Selection</Text>
-                            <Text style={styles.inputLabel}>Speed</Text>
-                            <Slider minimumValue={0} maximumValue={20} value={speed} onSlidingComplete={(v) => this.props.setSpeed(v)}/>
-                            <View style={{width: "100%", height: 20}}></View>
-                            <Text style={styles.inputLabel}>Font Size</Text>
-                            <Slider minimumValue={0} maximumValue={80} value={fontSize} onSlidingComplete={(v) => this.updateFontSize(v)}/>
-                            <View style={{width: "100%", height: 20}}></View>
-                            <Text style={styles.inputLabel}>Mirror Text</Text>
-                            <Switch value={mirror} onValueChange={(v) => this.updateMirror(v)}/>
-                            <Text style={styles.inputLabel}>Smart Pause Mode</Text>
-                            <Text>The telprompter will automatically start when it hears your voice and will automatically pause when it hears pauses in your voice.</Text>
-                            <Switch value={smartMode} onValueChange={(v) => this.props.setSmartMode(v)}/>
-                            <View style={{width: "100%", height: 20}}></View>
-                            <Text style={styles.inputLabel}>Selfie Mode</Text>
-                            <Switch value={selfieMode} onValueChange={(v) => this.props.setSelfieMode(v)}/>
-                            <View style={{width: "100%", height: 20}}></View>
-                            {   selfieMode &&
-                                <View>
-                                    <Text style={styles.inputLabel}>Selfie Text Background Mask Opacity</Text>
-                                    <Slider minimumValue={0} maximumValue={1} value={selfieMaskOpacity} onSlidingComplete={(v) => this.props.setSelfieMaskOpacity(v)}/>
-                                    <Text style={styles.inputLabel}>Background Text Background Mask Color</Text>
-                                    <TriangleColorPicker
-                                        onColorSelected={color => this.props.setSelfieMaskColor(hexToRgb(color))}
-                                        defaultColor={rgbToHex(...selfieMaskColor)}
-                                        style={{width: "100%", height: 300}}
-                                    />
-                                    <Text>*Touch Bottom Bar To Confirm Selection</Text>
-                                </View>
-                            }
-                            <View style={{width: "100%", height: 20}}></View>
-                            <CustomPicker title="Font" items={[{value: "sans serif", label: "Sans Serif"}, {value: "serif", label: "Serif"}]} onUpdate={(value) => this.updateTypeFace(value)} value={typeFace}/>
-                            <View style={{width: "100%", height: 20}}></View>
-                            <CustomPicker value={controlPanelSize} title="Control Layout" items={[{value: "dense", label: "Dense"}, {value: "moderate", label: "Moderate Spacing"}, {value: "sparse", label: "Sparse"}]} onUpdate={(value) => this.props.setControlPanelSize(value)}/>
-                            <View style={{width: "100%", height: 200}}></View>
-                        </ScrollView>
-                    </Modal>
-                }
+                <SettingsModal />
                 {   textModal &&
                     <Modal dismiss={toggleTextModal} title="Edit Text">
                         <Text style={[styles.inputLabel]}>Speech Text</Text>

@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
    cameraRecordPosition: {
         position: "absolute",
         width: "100%",
-        bottom: 20,
+        bottom: 40,
         left: 20,
         flexDirection: "row",
         justifyContent: "center"
