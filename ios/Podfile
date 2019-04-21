@@ -81,7 +81,7 @@ target 'natural-teleprompter' do
     :path => "../node_modules/expo-task-manager/ios"
   pod 'EXTaskManagerInterface',
     :path => "../node_modules/expo-task-manager-interface/ios"
-
+  pod 'Firebase/Core'
   pod 'React',
     :path => "../node_modules/react-native",
     :inhibit_warnings => true,

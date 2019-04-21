@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="expolib_v1.com.google.android.exoplayer:expolib_v1-extension-okhttp-2.6.1">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/expolib_v1-extension-okhttp-2.6.1.aar/3189f78c325034a0503b00a95c54f1b5/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/expolib_v1-extension-okhttp-2.6.1.aar/3189f78c325034a0503b00a95c54f1b5/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

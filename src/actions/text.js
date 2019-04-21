@@ -1,5 +1,8 @@
 import {TOGGLE_TEXT_MODAL, SET_TEXT, SET_POSITION, SET_HEIGHT} from "./types";
 
+import { Google } from 'expo';
+import { GOOGLE_WEB_CLIENT_ID } from '../../env';
+
 export const toggleTextModal = () => {
     return {
         type: TOGGLE_TEXT_MODAL
@@ -24,5 +27,12 @@ export const setHeight  = (height) => {
     return {
         type: SET_HEIGHT,
         payload: height
+    }
+}
+
+
+export const loginToGoogle = () => {
+    return async function(dispatch){
+        const { type, accessToken } = await Google.logInAsync({ clientId: GOOGLE_WEB_CLIENT_ID });
     }
 }

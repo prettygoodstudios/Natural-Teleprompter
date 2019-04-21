@@ -7,11 +7,13 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "dotenv": "^7.0.0",
     "expo": "^32.0.0",
     "expokit": "^32.0.7",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-color-picker": "https://github.com/prettygoodstudios/react-native-color-picker.git",
+    "react-native-dotenv": "^0.2.0",
     "react-native-recording": "^0.4.1",
     "react-native-sound-level": "^1.1.0",
     "react-redux": "^6.0.1",

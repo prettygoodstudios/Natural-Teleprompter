@@ -5,7 +5,9 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
+		840496C9226AC34B0022B449 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 840496C7226AC34A0022B449 /* GoogleService-Info.plist */; };
 		B501732B1DC01252003445D9 /* EXShell.plist in Resources */ = {isa = PBXBuildFile; fileRef = B501732A1DC01252003445D9 /* EXShell.plist */; };
 		B56386491DB9693800A0598C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56386481DB9693800A0598C /* AppDelegate.m */; };
 		B56386511DB9693800A0598C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56386501DB9693800A0598C /* Assets.xcassets */; };
@@ -34,6 +36,7 @@
 /* Begin PBXFileReference section */
 		2C1548D9E4CB1AEFA5CCAE6D /* Pods-natural-teleprompter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-natural-teleprompter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-natural-teleprompter/Pods-natural-teleprompter.debug.xcconfig"; sourceTree = "<group>"; };
 		5D95DC29A2D74F98BFB69EB6 /* libRecording.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRecording.a; sourceTree = "<group>"; };
+		840496C7226AC34A0022B449 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A47FE4D7F70906B7DC8CE39B /* Pods-natural-teleprompter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-natural-teleprompter.release.xcconfig"; path = "Pods/Target Support Files/Pods-natural-teleprompter/Pods-natural-teleprompter.release.xcconfig"; sourceTree = "<group>"; };
 		B501732A1DC01252003445D9 /* EXShell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXShell.plist; sourceTree = "<group>"; };
 		B56386411DB9693800A0598C /* natural-teleprompter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "natural-teleprompter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				5D95DC29A2D74F98BFB69EB6 /* libRecording.a */,
-				CE864D70D6E9438D926D7B0B /* libRNSoundLevel.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -131,6 +133,7 @@
 		B56386431DB9693800A0598C /* natural-teleprompter */ = {
 			isa = PBXGroup;
 			children = (
+				840496C7226AC34A0022B449 /* GoogleService-Info.plist */,
 				B56386471DB9693800A0598C /* AppDelegate.h */,
 				B56386481DB9693800A0598C /* AppDelegate.m */,
 				B56386501DB9693800A0598C /* Assets.xcassets */,
@@ -242,6 +245,7 @@
 				B5693E921FABD46800307FA4 /* launch_icon.png in Resources */,
 				B5693E8E1FABD16A00307FA4 /* LaunchScreen.xib in Resources */,
 				B5DB04801F3A684600E91581 /* shell-app-manifest.json in Resources */,
+				840496C9226AC34B0022B449 /* GoogleService-Info.plist in Resources */,
 				B5DB04811F3A684600E91581 /* shell-app.bundle in Resources */,
 				B56386511DB9693800A0598C /* Assets.xcassets in Resources */,
 			);
@@ -451,9 +455,7 @@
 				DEVELOPMENT_TEAM = 9UJ937XZ7J;
 				INFOPLIST_FILE = "$(SRCROOT)/natural-teleprompter/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "natural-teleprompter-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -468,9 +470,7 @@
 				DEVELOPMENT_TEAM = 9UJ937XZ7J;
 				INFOPLIST_FILE = "$(SRCROOT)/natural-teleprompter/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "natural-teleprompter-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

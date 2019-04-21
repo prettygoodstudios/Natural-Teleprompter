@@ -6,3 +6,7 @@ npm-debug.*
 *.key
 *.mobileprovision
 ios/Pods
+env.js
+node_modules
+android/app/build/
+android/build/

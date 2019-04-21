@@ -143,6 +143,7 @@ class MainScreen extends Component {
                     <Modal dismiss={toggleTextModal} title="Edit Text">
                         <Text style={[styles.inputLabel]}>Speech Text</Text>
                         <TextInput multiline={true} style={styles.textArea} value={this.state.textModalValue} onChangeText={(t) => this.updateTextModalInput(t)}/>
+                        <Center><Button content="Download Script From Google Drive" onPress={() => this.props.loginToGoogle()}/></Center>
                         <Center><Button content="Update" onPress={() => this.sumbitTextModal()}/></Center>
                     </Modal>
                 }
