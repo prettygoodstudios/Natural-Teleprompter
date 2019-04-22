@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, Image} from "react-native";
+import {View, Text, TouchableOpacity, Image, Dimensions} from "react-native";
 import {connect} from 'react-redux';
 
 import styles from "../styles/controlPanel";
@@ -7,7 +7,9 @@ import * as actions from "../actions";
 import calculateTextHeight from '../helpers/height';
 import { isRequired } from 'react-native/Libraries/StyleSheet/ColorPropType';
 
-const controlPanelSizes = {
+const {width} = Dimensions.get('window');
+
+const controlPanelSizes = width > 400 ?  {
     dense: {
         height: 50,
         marginLeft: 20,
@@ -22,6 +24,22 @@ const controlPanelSizes = {
         height: 70,
         marginLeft: 40,
         fontSize: 40
+    }
+} : {
+    dense: {
+        height: 30,
+        marginLeft: 15,
+        fontSize: 15
+    },
+    moderate: {
+        height: 40,
+        marginLeft: 20,
+        fontSize: 20
+    },
+    sparse: {
+        height: 50,
+        marginLeft: 30,
+        fontSize: 30
     }
 }
 

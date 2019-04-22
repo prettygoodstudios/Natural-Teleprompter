@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {View, Text, Slider, Switch, ScrollView} from "react-native";
+import {View, Text, Slider, Switch, ScrollView, Dimensions} from "react-native";
 import {connect} from 'react-redux';
 import {TriangleColorPicker} from 'react-native-color-picker';
 
@@ -9,6 +9,8 @@ import {rgbToHex, hexToRgb} from '../helpers/colors';
 
 import CustomPicker from "../components/customPicker";
 import Modal from "../components/modal";
+
+const {width, height} = Dimensions.get('window');
 
 class SettingsModal extends Component {
 
@@ -102,7 +104,7 @@ class SettingsModal extends Component {
                     <View style={{width: "100%", height: 20}}></View>
                     <CustomPicker title="Font" items={[{value: "sans serif", label: "Sans Serif"}, {value: "serif", label: "Serif"}]} onUpdate={(value) => this.updateTypeFace(value)} value={typeFace}/>
                     <View style={{width: "100%", height: 20}}></View>
-                    <CustomPicker value={controlPanelSize} title="Control Layout" items={[{value: "dense", label: "Dense"}, {value: "moderate", label: "Moderate Spacing"}, {value: "sparse", label: "Sparse"}]} onUpdate={(value) => this.props.setControlPanelSize(value)}/>
+                    <CustomPicker value={controlPanelSize} title={width > 400 ? "Control Layout" : "Layout"} items={[{value: "dense", label: "Dense"}, {value: "moderate", label: width > 400 ? "Moderate Spacing" : "Moderate"}, {value: "sparse", label: "Sparse"}]} onUpdate={(value) => this.props.setControlPanelSize(value)}/>
                     <View style={{width: "100%", height: 200}}></View>
                 </ScrollView>
             </Modal>

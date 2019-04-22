@@ -1,6 +1,7 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 import {offWhite, darkBlack, secondaryBlack, thirdBlack} from ".";
 
+const {width, height} = Dimensions.get('window');
 
 export default StyleSheet.create({
     customPicker: {
@@ -9,7 +10,7 @@ export default StyleSheet.create({
     },
     customPickerTitle: {
         color: offWhite,
-        fontSize: 30
+        fontSize: width > 400 ? 30 : 20
     },  
     customPickerCarrot: {
         height: 20,
@@ -34,7 +35,7 @@ export default StyleSheet.create({
     },
     selectedItemText: {
         color: offWhite,
-        fontSize: 30,
+        fontSize: width > 400 ? 30 : 20,
         marginRight: 10
     },
     nonSelectedItems: {
@@ -52,6 +53,6 @@ export default StyleSheet.create({
     },
     nonSelectedItemText: {
         color: offWhite,
-        fontSize: 30
+        fontSize: width > 400 ? 30 : 20
     }
 });

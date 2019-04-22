@@ -108,7 +108,7 @@ class MainScreen extends Component {
     }
 
     render(){
-        const {color, backgroundColor, settingsModal, textModal, toggleSettingsModal, toggleTextModal, text, speed, position, fontSize, mirror, typeFace, controlPanelSize, smartMode, selfieMode, selfieMaskOpacity, selfieMaskColor} = this.props;
+        const {color, backgroundColor, textModal, toggleTextModal, text, position, fontSize, mirror, typeFace, selfieMode, selfieMaskOpacity, selfieMaskColor} = this.props;
         //alert(`Color : ${color}, Background Color: ${backgroundColor}`)
         return(
             <View>
@@ -117,34 +117,40 @@ class MainScreen extends Component {
                 <View style={[styles.container, {backgroundColor}]}>
                     <Text style={[styles.h1, {color}, {marginTop: -position}, {fontSize}, mirror && {transform: [{rotateY: '180deg'}]}, typeFace == "sans serif" ? {fontFamily: 'open-sans-bold'} : {fontFamily: 'amiri-bold'}]} onLayout={(event) => this.props.setHeight(event.nativeEvent.layout.height)}>{text}</Text>
                     <View style={[styles.cameraMask, selfieMode ?  {} : {display: "none"}, {backgroundColor: `rgba(${selfieMaskColor.join(", ")}, ${parseInt(selfieMaskOpacity*100)/100})`}]}></View>
-                    <View style={styles.cameraRecordPosition}>
-                        <TouchableOpacity onPress={this.state.recording ? () => this.camera.stopRecording() : this.recordVideo}>
-                            <View style={[styles.cameraRecord, selfieMode ?  {} : {display: "none"}]}>
-                                {   this.state.recording && 
-                                    <View style={styles.cameraRecordPause}>
+                    {   selfieMode &&
+                        <View style={styles.cameraRecordPosition}>
+                            <TouchableOpacity onPress={this.state.recording ? () => this.camera.stopRecording() : this.recordVideo}>
+                                <View style={[styles.cameraRecord, selfieMode ?  {} : {display: "none"}]}>
+                                    {   this.state.recording && 
+                                        <View style={styles.cameraRecordPause}>
 
-                                    </View>
-                                }
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <Camera style={[styles.camera, selfieMode ?  {} : {display: "none"}]} type={Camera.Constants.Type.front} ref={ref => {this.camera = ref;}}>
-                        <View
-                        style={{
-                            flex: 1,
-                            backgroundColor: 'transparent',
-                            flexDirection: 'row',
-                        }}>
+                                        </View>
+                                    }
+                                </View>
+                            </TouchableOpacity>
                         </View>
-                    </Camera>
+                    }
+                    {   selfieMode &&
+                        <Camera style={[styles.camera, selfieMode ?  {} : {display: "none"}]} type={Camera.Constants.Type.front} ref={ref => {this.camera = ref;}}>
+                            <View
+                            style={{
+                                flex: 1,
+                                backgroundColor: 'transparent',
+                                flexDirection: 'row',
+                            }}>
+                            </View>
+                        </Camera>
+                    }
                 </View>
                 <SettingsModal />
                 {   textModal &&
                     <Modal dismiss={toggleTextModal} title="Edit Text">
-                        <Text style={[styles.inputLabel]}>Speech Text</Text>
-                        <TextInput multiline={true} style={styles.textArea} value={this.state.textModalValue} onChangeText={(t) => this.updateTextModalInput(t)}/>
-                        <Center><Button content="Download Script From Google Drive" onPress={() => this.props.loginToGoogle()}/></Center>
-                        <Center><Button content="Update" onPress={() => this.sumbitTextModal()}/></Center>
+                        <ScrollView>
+                            <Text style={[styles.inputLabel]}>Speech Text</Text>
+                            <TextInput multiline={true} style={styles.textArea} value={this.state.textModalValue} onChangeText={(t) => this.updateTextModalInput(t)}/>
+                            <Center><Button content="Download Script From Google Drive" onPress={() => this.props.loginToGoogle()}/></Center>
+                            <Center><Button content="Update" onPress={() => this.sumbitTextModal()}/></Center>
+                        </ScrollView>
                     </Modal>
                 }
                 <VideoModal />

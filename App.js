@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Platform } from 'react-native';
 import { Provider, connect } from 'react-redux';
 import reduxThunk from "redux-thunk";
 import { createLogger } from 'redux-logger';
@@ -21,7 +21,8 @@ export default class App extends React.Component {
     super();
     this.state = {
       fontsLoaded: false,
-      hasCameraPermission: false
+      hasCameraPermission: false,
+      hasMicrophonePermission: false
     }
   }
 
@@ -36,19 +37,21 @@ export default class App extends React.Component {
 
     this.setState({fontsLoaded: true});
 
-    const { status } = await Permissions.askAsync(Permissions.CAMERA);
-    this.setState({ hasCameraPermission: status === 'granted' });
-    if(status !== 'granted'){
-      alert("In order to use this app you must enable the camera permission.")
+    const { status: cameraStatus } = await Permissions.askAsync(Permissions.CAMERA);
+    const { status: microphoneStatus } = await Permissions.askAsync(Permissions.AUDIO_RECORDING);
+    this.setState({ hasCameraPermission: cameraStatus === 'granted' });
+    this.setState({ hasMicrophonePermission: microphoneStatus === 'granted' });
+    if(cameraStatus !== 'granted' && microphoneStatus !== 'granted'){
+      alert("In order to use this app you must enable the camera and microphone permission.")
     }
   }
 
   render() {
-    const {fontsLoaded, hasCameraPermission} = this.state;
+    const {fontsLoaded, hasCameraPermission, hasMicrophonePermission} = this.state;
 
     return (
       <Provider store={store}>
-        {fontsLoaded && hasCameraPermission ? <MainScreen /> : <View style={styles.loadingWrapper}><Image source={require("./assets/splash.png")} style={{height: "100%", width: 300, resizeMode: "contain"}} /></View>}
+        {fontsLoaded && hasCameraPermission && hasMicrophonePermission ? <MainScreen /> : <View style={styles.loadingWrapper}><Image source={require("./assets/splash.png")} style={{height: "100%", width: 300, resizeMode: "contain"}} /></View>}
       </Provider>
     );
   }

@@ -13,7 +13,8 @@ export default StyleSheet.create({
        height: headerHeight,
        alignItems: "center",
        paddingLeft: 20,
-       paddingRight: 20
+       paddingRight: 20,
+       zIndex: 2
    },
    headerTitle: {
        color: offWhite,

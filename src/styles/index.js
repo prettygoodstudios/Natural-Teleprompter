@@ -13,13 +13,15 @@ const styles = StyleSheet.create({
    h1: {
        fontSize: 30,
        fontWeight: "700",
-       color: offWhite
+       color: offWhite,
+       zIndex: 0
    },
    container: {
        padding: 20,
-       height: height - 160,
+       height: height - 140,
        backgroundColor: secondaryBlack,
-       zIndex: -100
+       zIndex: -100,
+       overflow: "hidden"
    },
    inputLabel: {
        fontSize: 20,
@@ -34,7 +36,8 @@ const styles = StyleSheet.create({
        color: darkBlack,
        borderRadius: 5,
        padding: 10,
-       fontSize: 20
+       fontSize: 20,
+       textAlignVertical: "top"
    },
    textInput: {
         width: "100%",
@@ -69,7 +72,7 @@ const styles = StyleSheet.create({
        top: 0,
        width: width + 20,
        height: height - 140,
-       margin: -20,
+       margin: 0,
        zIndex: -2
    },
    cameraMask: {
@@ -78,7 +81,7 @@ const styles = StyleSheet.create({
         top: 0,
         width: width + 20,
         height: height - 140,
-        margin: -20,
+        margin: 0,
         zIndex: -1 ,
         backgroundColor: "rgba(0, 0, 0, 0.5)"
    },

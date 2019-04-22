@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 
 import { darkBlack, offWhite, thirdBlack } from './index.js';
 
+
 const controlPanelHeight = 50;
 
 export default StyleSheet.create({

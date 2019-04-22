@@ -7,20 +7,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1685354-f2af-44b7-bf20-3f091ddc4ae6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/natural-teleprompter.xcworkspace/xcuserdata/admin.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/../ios/natural-teleprompter.xcworkspace/xcuserdata/admin.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.gitignore" afterPath="$PROJECT_DIR$/../.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/host/exp/exponent/generated/DetachBuildConstants.java" afterPath="$PROJECT_DIR$/app/src/main/java/host/exp/exponent/generated/DetachBuildConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../babel.config.js" afterPath="$PROJECT_DIR$/../babel.config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/Podfile" afterPath="$PROJECT_DIR$/../ios/Podfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/Podfile.lock" afterPath="$PROJECT_DIR$/../ios/Podfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/natural-teleprompter.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/../ios/natural-teleprompter.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/natural-teleprompter.xcworkspace/xcuserdata/admin.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterPath="$PROJECT_DIR$/../ios/natural-teleprompter.xcworkspace/xcuserdata/admin.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/natural-teleprompter/AppDelegate.m" afterPath="$PROJECT_DIR$/../ios/natural-teleprompter/AppDelegate.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../package-lock.json" afterPath="$PROJECT_DIR$/../package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../package.json" afterPath="$PROJECT_DIR$/../package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/actions/index.js" afterPath="$PROJECT_DIR$/../src/actions/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/actions/text.js" afterPath="$PROJECT_DIR$/../src/actions/text.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/fileHashes.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/classAnalysis.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/javaCompile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.10.2/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.10.2/taskHistory/taskHistory.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.10.2/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.10.2/taskHistory/taskHistory.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../App.js" afterPath="$PROJECT_DIR$/../App.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/screens/main.js" afterPath="$PROJECT_DIR$/../src/screens/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/screens/settingsModal.js" afterPath="$PROJECT_DIR$/../src/screens/settingsModal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/styles/controlPanel.js" afterPath="$PROJECT_DIR$/../src/styles/controlPanel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/styles/customPicker.js" afterPath="$PROJECT_DIR$/../src/styles/customPicker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/styles/header.js" afterPath="$PROJECT_DIR$/../src/styles/header.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/styles/index.js" afterPath="$PROJECT_DIR$/../src/styles/index.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -103,8 +109,8 @@
       <file leaf-file-name="RecordingModule.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../node_modules/react-native-recording/lib/android/src/main/java/cn/qiuxiang/react/recording/RecordingModule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="99" column="22" lean-forward="false" selection-start-line="99" selection-start-column="22" selection-end-line="99" selection-end-column="22" />
+            <state relative-caret-position="153">
+              <caret line="44" column="12" lean-forward="false" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -6253,8 +6259,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../node_modules/react-native-recording/lib/android/src/main/java/cn/qiuxiang/react/recording/RecordingModule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="99" column="22" lean-forward="false" selection-start-line="99" selection-start-column="22" selection-end-line="99" selection-end-column="22" />
+        <state relative-caret-position="153">
+          <caret line="44" column="12" lean-forward="false" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="12" />
           <folding />
         </state>
       </provider>
