@@ -6,28 +6,7 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1685354-f2af-44b7-bf20-3f091ddc4ae6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/fileHashes.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/classAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/javaCompile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.10.2/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.10.2/taskHistory/taskHistory.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.10.2/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.10.2/taskHistory/taskHistory.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../App.js" afterPath="$PROJECT_DIR$/../App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/screens/main.js" afterPath="$PROJECT_DIR$/../src/screens/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/screens/settingsModal.js" afterPath="$PROJECT_DIR$/../src/screens/settingsModal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/styles/controlPanel.js" afterPath="$PROJECT_DIR$/../src/styles/controlPanel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/styles/customPicker.js" afterPath="$PROJECT_DIR$/../src/styles/customPicker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/styles/header.js" afterPath="$PROJECT_DIR$/../src/styles/header.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/styles/index.js" afterPath="$PROJECT_DIR$/../src/styles/index.js" />
-    </list>
+    <list default="true" id="e1685354-f2af-44b7-bf20-3f091ddc4ae6" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

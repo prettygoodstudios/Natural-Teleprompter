@@ -41,8 +41,8 @@ export default class App extends React.Component {
     const { status: microphoneStatus } = await Permissions.askAsync(Permissions.AUDIO_RECORDING);
     this.setState({ hasCameraPermission: cameraStatus === 'granted' });
     this.setState({ hasMicrophonePermission: microphoneStatus === 'granted' });
-    if(cameraStatus !== 'granted' && microphoneStatus !== 'granted'){
-      alert("In order to use this app you must enable the camera and microphone permission.")
+    if(cameraStatus !== 'granted' || microphoneStatus !== 'granted'){
+      alert("In order to use this app you must grant the camera and microphone permissions.")
     }
   }
 
