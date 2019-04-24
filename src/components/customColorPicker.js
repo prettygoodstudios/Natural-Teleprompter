@@ -157,14 +157,14 @@ export default class CustomColorPicker extends Component {
         return(
             <View style={{zIndex: !onTop ? 999999999 : 99999999999999999999999999999999999999}}>
                 {   this.state.visible && Platform.OS === "ios" &&
-                    <TouchableWithoutFeedback onPress={() => this.props.onClose()}>
+                    <TouchableWithoutFeedback onPressIn={() => this.props.onClose()}>
                         <View style={styles.backgroundView}>
 
                         </View>
                     </TouchableWithoutFeedback>
                 }
                 {   this.state.visible && Platform.OS === "ios" &&
-                    <TouchableWithoutFeedback onPress={() => this.props.onOpen()}>
+                    <TouchableWithoutFeedback onPressIn={() => this.props.onOpen()}>
                         <View style={styles.pickerView}>
                             <View style={styles.pickerViewCarot}></View>
                             <View style={styles.pickerViewHeader}>
