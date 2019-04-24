@@ -9,6 +9,7 @@ import {rgbToHex, hexToRgb} from '../helpers/colors';
 
 import CustomPicker from "../components/customPicker";
 import Modal from "../components/modal";
+import CustomColorPicker from "../components/customColorPicker";
 
 const {width, height} = Dimensions.get('window');
 
@@ -39,6 +40,13 @@ class SettingsModal extends Component {
         this.props.setPosition(-this.props.position, 1);
     }
 
+    toggle = () => {
+        this.props.toggleSettingsModal();
+        this.setState({
+            scroll: true
+        });
+    }
+
     render(){
         const {color, backgroundColor, settingsModal, toggleSettingsModal, speed, fontSize, mirror, typeFace, controlPanelSize, smartMode, selfieMode, selfieMaskOpacity, selfieMaskColor} = this.props;
 
@@ -49,28 +57,23 @@ class SettingsModal extends Component {
         }
 
         return(
-            <Modal dismiss={toggleSettingsModal} title="Settings">
+            <Modal dismiss={this.toggle} title="Settings">
                 <ScrollView scrollEnabled={this.state.scroll} >
                     <Text style={styles.inputLabel}>Font Color</Text>
-                    <View>
-                        <TriangleColorPicker
-                            onColorSelected={color => this.props.setColor(color)}
-                            defaultColor={color}
-                            style={{width: "100%", height: 300}}
-                            onTouch={() => this.setState({scroll: false})}
-                            onLeave={() => this.setState({scroll: true})}
-                        />
-                    </View>
-                    <Text>*Touch Bottom Bar To Confirm Selection</Text>
-                    <Text style={styles.inputLabel}>Background Color</Text>
-                    <TriangleColorPicker
-                        onColorSelected={color => this.props.setBackgroundColor(color)}
-                        defaultColor={backgroundColor}
-                        style={{width: "100%", height: 300}}
-                        onTouch={() => this.setState({scroll: false})}
-                        onLeave={() => this.setState({scroll: true})}
+                    <CustomColorPicker 
+                        color={color} 
+                        setColor={this.props.setColor}
+                        onOpen={() => this.setState({scroll: false})}
+                        onClose={() => this.setState({scroll: true})}
+                        onTop={true}
                     />
-                    <Text>*Touch Bottom Bar To Confirm Selection</Text>
+                    <Text style={styles.inputLabel}>Background Color</Text>
+                    <CustomColorPicker 
+                        color={backgroundColor} 
+                        setColor={this.props.setBackgroundColor}
+                        onOpen={() => this.setState({scroll: false})}
+                        onClose={() => this.setState({scroll: true})}
+                    />
                     <Text style={styles.inputLabel}>Speed</Text>
                     <Slider minimumValue={0} maximumValue={20} value={speed} onSlidingComplete={(v) => this.props.setSpeed(v)}/>
                     <View style={{width: "100%", height: 20}}></View>
@@ -87,25 +90,24 @@ class SettingsModal extends Component {
                     <Switch value={selfieMode} onValueChange={(v) => this.props.setSelfieMode(v)}/>
                     <View style={{width: "100%", height: 20}}></View>
                     {   selfieMode &&
-                        <View>
+                        <View style={{zIndex: 999999999999999999999}}>
                             <Text style={styles.inputLabel}>Selfie Text Background Mask Opacity</Text>
                             <Slider minimumValue={0} maximumValue={1} value={selfieMaskOpacity} onSlidingComplete={(v) => this.props.setSelfieMaskOpacity(v)}/>
                             <Text style={styles.inputLabel}>Background Text Background Mask Color</Text>
-                            <TriangleColorPicker
-                                onColorSelected={color => this.props.setSelfieMaskColor(hexToRgb(color))}
-                                defaultColor={rgbToHex(...selfieMaskColor)}
-                                style={{width: "100%", height: 300}}
-                                onTouch={() => this.setState({scroll: false})}
-                                onLeave={() => this.setState({scroll: true})}
+                            <CustomColorPicker 
+                                color={rgbToHex(...selfieMaskColor)} 
+                                setColor={color => this.props.setSelfieMaskColor(hexToRgb(color))}
+                                onOpen={() => this.setState({scroll: false})}
+                                onClose={() => this.setState({scroll: true})}
+                                onTop={true}
                             />
-                            <Text>*Touch Bottom Bar To Confirm Selection</Text>
                         </View>
                     }
                     <View style={{width: "100%", height: 20}}></View>
                     <CustomPicker title="Font" items={[{value: "sans serif", label: "Sans Serif"}, {value: "serif", label: "Serif"}]} onUpdate={(value) => this.updateTypeFace(value)} value={typeFace}/>
                     <View style={{width: "100%", height: 20}}></View>
                     <CustomPicker value={controlPanelSize} title={width > 400 ? "Control Layout" : "Layout"} items={[{value: "dense", label: "Dense"}, {value: "moderate", label: width > 400 ? "Moderate Spacing" : "Moderate"}, {value: "sparse", label: "Sparse"}]} onUpdate={(value) => this.props.setControlPanelSize(value)}/>
-                    <View style={{width: "100%", height: 200}}></View>
+                    <View style={{width: "100%", height: 600}}></View>
                 </ScrollView>
             </Modal>
         )
