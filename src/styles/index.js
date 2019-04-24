@@ -10,6 +10,12 @@ export const offWhite = "#ECECEC";
 const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
+   appWrapper: {
+        display: "flex",
+        flex: 1,
+        flexDirection: "column",
+        height: "100%"
+   },
    h1: {
        fontSize: 30,
        fontWeight: "700",
@@ -18,7 +24,8 @@ const styles = StyleSheet.create({
    },
    container: {
        padding: 20,
-       height: height - 140,
+       flex: 1,
+       width: "100%",
        backgroundColor: secondaryBlack,
        zIndex: -100,
        overflow: "hidden"

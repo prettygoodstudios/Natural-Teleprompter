@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Platform } from 'react-native';
+import { StyleSheet, Text, View, Image, Platform, Dimensions } from 'react-native';
 import { Provider, connect } from 'react-redux';
 import reduxThunk from "redux-thunk";
 import { createLogger } from 'redux-logger';
 import { createStore, applyMiddleware, compose } from 'redux';
-import {Font, Permissions} from "expo";
+import {Font, Permissions, ScreenOrientation} from "expo";
 
 
 import reducers from './src/reducers';
@@ -14,6 +14,9 @@ const store = createStore(reducers, applyMiddleware(reduxThunk));
 //Screens
 import MainScreen from "./src/screens/main";
 import styles from './src/styles';
+
+
+
 
 export default class App extends React.Component {
 
@@ -27,6 +30,12 @@ export default class App extends React.Component {
   }
 
   async componentDidMount(){
+
+    //Event Listener For Orientation Changes
+    await ScreenOrientation.allowAsync(ScreenOrientation.Orientation.ALL);
+    Dimensions.addEventListener('change', async () => {
+      await ScreenOrientation.allowAsync(ScreenOrientation.Orientation.ALL);
+    });
 
     await Font.loadAsync({
       'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),

@@ -6,10 +6,7 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1685354-f2af-44b7-bf20-3f091ddc4ae6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ios/natural-teleprompter.xcworkspace/xcuserdata/admin.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/../ios/natural-teleprompter.xcworkspace/xcuserdata/admin.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/screens/settingsModal.js" afterPath="$PROJECT_DIR$/../src/screens/settingsModal.js" />
-    </list>
+    <list default="true" id="e1685354-f2af-44b7-bf20-3f091ddc4ae6" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

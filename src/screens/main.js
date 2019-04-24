@@ -32,7 +32,9 @@ class MainScreen extends Component {
         this.state = {
             textModalValue: "Enter your own text.",
             textPosition: 0,
-            recording: false
+            recording: false,
+            cameraWidth: 0,
+            cameraHeight: 0
         }
         this.camera = null;
     }
@@ -40,7 +42,19 @@ class MainScreen extends Component {
     componentDidMount(){
         this.props.retrieveSavedSettings();
         this.animationFrameId = requestAnimationFrame(this.animateText);
-        
+
+        Dimensions.addEventListener('change', () => {
+            const {width, height} = Dimensions.get('window');
+            this.setState({
+                cameraHeight: height - 140,
+                cameraWidth: width + 20
+            });
+        });
+        const {width, height} = Dimensions.get('window');
+        this.setState({
+            cameraHeight: height - 140,
+            cameraWidth: width + 20
+        });
         Recording.init({
             bufferSize: 4096,
             sampleRate: 44100,
@@ -111,12 +125,12 @@ class MainScreen extends Component {
         const {color, backgroundColor, textModal, toggleTextModal, text, position, fontSize, mirror, typeFace, selfieMode, selfieMaskOpacity, selfieMaskColor} = this.props;
         //alert(`Color : ${color}, Background Color: ${backgroundColor}`)
         return(
-            <View>
+            <View style={styles.appWrapper}>
                 <HeaderComponent />
                 <ControlPanelComponent />
                 <View style={[styles.container, {backgroundColor}]}>
                     <Text style={[styles.h1, {color}, {marginTop: -position}, {fontSize}, mirror && {transform: [{rotateY: '180deg'}]}, typeFace == "sans serif" ? {fontFamily: 'open-sans-bold'} : {fontFamily: 'amiri-bold'}]} onLayout={(event) => this.props.setHeight(event.nativeEvent.layout.height)}>{text}</Text>
-                    <View style={[styles.cameraMask, selfieMode ?  {} : {display: "none"}, {backgroundColor: `rgba(${selfieMaskColor.join(", ")}, ${parseInt(selfieMaskOpacity*100)/100})`}]}></View>
+                    <View style={[styles.cameraMask, {width: this.state.cameraWidth, height: this.state.cameraHeight}, selfieMode ?  {} : {display: "none"}, {backgroundColor: `rgba(${selfieMaskColor.join(", ")}, ${parseInt(selfieMaskOpacity*100)/100})`}]}></View>
                     {   selfieMode &&
                         <View style={styles.cameraRecordPosition}>
                             <TouchableOpacity onPress={this.state.recording ? () => this.camera.stopRecording() : this.recordVideo}>
@@ -131,7 +145,7 @@ class MainScreen extends Component {
                         </View>
                     }
                     {   selfieMode &&
-                        <Camera style={[styles.camera, selfieMode ?  {} : {display: "none"}]} type={Camera.Constants.Type.front} ref={ref => {this.camera = ref;}}>
+                        <Camera style={[styles.camera, {width: this.state.cameraWidth, height: this.state.cameraHeight}, selfieMode ?  {} : {display: "none"}]} type={Camera.Constants.Type.front} ref={ref => {this.camera = ref;}}>
                             <View
                             style={{
                                 flex: 1,
