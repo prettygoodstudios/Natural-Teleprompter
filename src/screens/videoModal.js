@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {View, Text, TouchableOpacity, CameraRoll} from "react-native";
+import {View, Text, TouchableOpacity, CameraRoll, ScrollView} from "react-native";
 import {connect} from "react-redux";
 import {Video} from "expo";
 
@@ -50,20 +50,21 @@ class VideoModal extends Component {
 
         return(
             <Modal title="Video Preview" dismiss={this.props.closeVideo}>
-                <View>
-                    <Video
-                        source={{ uri }}
-                        rate={1.0}
-                        volume={1.0}
-                        isMuted={false}
-                        resizeMode="contain"
-                        useNativeControls
-                        style={{ width: "100%", height: 300}}
-                        />
-                </View>
-                <VideoModalButton onPress={this.saveVideo} content="Save To Photos"/>
-                <VideoModalButton onPress={this.props.closeVideo} content="Discard" />
-
+                <ScrollView>
+                    <View>
+                        <Video
+                            source={{ uri }}
+                            rate={1.0}
+                            volume={1.0}
+                            isMuted={false}
+                            resizeMode="contain"
+                            useNativeControls
+                            style={{ width: "100%", height: 300}}
+                            />
+                    </View>
+                    <VideoModalButton onPress={this.saveVideo} content="Save To Photos"/>
+                    <VideoModalButton onPress={this.props.closeVideo} content="Discard" />
+                </ScrollView>
             </Modal>
         )
     }

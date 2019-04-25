@@ -25,7 +25,8 @@ export default class App extends React.Component {
     this.state = {
       fontsLoaded: false,
       hasCameraPermission: false,
-      hasMicrophonePermission: false
+      hasMicrophonePermission: false,
+      hasCameraRollPermission: false
     }
   }
 
@@ -48,19 +49,22 @@ export default class App extends React.Component {
 
     const { status: cameraStatus } = await Permissions.askAsync(Permissions.CAMERA);
     const { status: microphoneStatus } = await Permissions.askAsync(Permissions.AUDIO_RECORDING);
+    const { status: cameraRollStatus } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
     this.setState({ hasCameraPermission: cameraStatus === 'granted' });
     this.setState({ hasMicrophonePermission: microphoneStatus === 'granted' });
-    if(cameraStatus !== 'granted' || microphoneStatus !== 'granted'){
-      alert("In order to use this app you must grant the camera and microphone permissions.")
+    this.setState({ hasCameraRollPermission: cameraRollStatus === 'granted'});
+
+    if(cameraStatus !== 'granted' || microphoneStatus !== 'granted' || cameraRollStatus !== 'granted'){
+      alert("In order to use this app you must grant the camera, camera roll and microphone permissions.")
     }
   }
 
   render() {
-    const {fontsLoaded, hasCameraPermission, hasMicrophonePermission} = this.state;
+    const {fontsLoaded, hasCameraPermission, hasMicrophonePermission, hasCameraRollPermission} = this.state;
 
     return (
       <Provider store={store}>
-        {fontsLoaded && hasCameraPermission && hasMicrophonePermission ? <MainScreen /> : <View style={styles.loadingWrapper}><Image source={require("./assets/splash.png")} style={{height: "100%", width: 300, resizeMode: "contain"}} /></View>}
+        {fontsLoaded && hasCameraPermission && hasMicrophonePermission && hasCameraRollPermission ? <MainScreen /> : <View style={styles.loadingWrapper}><Image source={require("./assets/splash.png")} style={{height: "100%", width: 300, resizeMode: "contain"}} /></View>}
       </Provider>
     );
   }
