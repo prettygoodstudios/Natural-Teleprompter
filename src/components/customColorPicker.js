@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Platform} from 'react-native';
+import {View, Text, TextInput, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Platform, Dimensions} from 'react-native';
 import {TriangleColorPicker, fromHsv} from 'react-native-color-picker';
 
 const styles =  StyleSheet.create({
@@ -92,6 +92,7 @@ const styles =  StyleSheet.create({
     }
 });
 
+
 export default class CustomColorPicker extends Component {
 
     constructor(){
@@ -154,9 +155,13 @@ export default class CustomColorPicker extends Component {
 
     render(){
         const {color, onTop} = this.props;
-        return(
-            <View style={{zIndex: !onTop ? 999999999 : 99999999999999999999999999999999999999}}>
-                {   this.state.visible && Platform.OS === "ios" &&
+
+
+
+        if(Platform.OS === "ios"){
+            return(
+                <View style={{zIndex: !onTop ? 9999999999999999999999 : 99999999999999999999999999999999999999}}>
+                {   this.state.visible &&
                     <TouchableWithoutFeedback onPressIn={() => this.props.onClose()}>
                         <View style={styles.backgroundView}>
 
@@ -165,7 +170,7 @@ export default class CustomColorPicker extends Component {
                 }
                 {   this.state.visible && Platform.OS === "ios" &&
                     <TouchableWithoutFeedback onPressIn={() => this.props.onOpen()}>
-                        <View style={styles.pickerView}>
+                        <View style={[styles.pickerView, {zIndex: !onTop ? 99999999999999999 : 99999999999999999999999999999999999999}]}>
                             <View style={styles.pickerViewCarot}></View>
                             <View style={styles.pickerViewHeader}>
                                 <TouchableOpacity onPress={() => this.cancelModal()}>
@@ -189,33 +194,9 @@ export default class CustomColorPicker extends Component {
                         </View>
                     </TouchableWithoutFeedback>
                 }
-                {   this.state.visible && Platform.OS != "ios" &&
-                    <View style={styles.pickerView}>
-                        <View style={styles.pickerViewCarot}></View>
-                        <View style={styles.pickerViewHeader}>
-                            <TouchableOpacity onPress={() => this.cancelModal()}>
-                                <Text style={styles.pickerViewHeaderButtonText}>{'< Back'}</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={this.submitModal}>
-                                <Text style={styles.pickerViewHeaderButtonText}>
-                                    Done
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.pickerViewBottom}>
-                            <TriangleColorPicker
-                                onColorChange={c => this.setState({color: fromHsv(c)})}
-                                defaultColor={color}
-                                style={{width: "100%", height: 300}}
-                                onTouch={() => console.log("Touched")}
-                                onLeave={() => console.log("Retrieved")}
-                            />
-                        </View>
-                    </View>
-                }
                 <View style={styles.customColorPicker}>
                     <View style={[styles.preview, {backgroundColor: color}]}></View>
-                    <TextInput value={this.state.color} style={styles.textInput} onEndEditing={this.onEndEditing} onChangeText={(t) => this.onUpdate(t)}/>
+                    <TextInput value={this.state.color} style={[styles.textInput, Dimensions.get('window').width < 400 && {width: 130}]} onEndEditing={this.onEndEditing} onChangeText={(t) => this.onUpdate(t)}/>
                     <TouchableOpacity onPress={this.openModal}>
                         <View style={styles.pickerButton}>
                             <Text style={styles.pickerButtonText}>?</Text>
@@ -223,6 +204,47 @@ export default class CustomColorPicker extends Component {
                     </TouchableOpacity>
                 </View> 
             </View>
-        );
+            );
+        }else{
+            return(
+                <View style={{zIndex: !onTop ? 9999999999999999999999 : 99999999999999999999999999999999999999}}>
+                    {   this.state.visible &&
+                        <View style={[styles.pickerView, {zIndex: !onTop ? 999999999 : 99999999999999999999999999999999999999}]}>
+                            <View style={styles.pickerViewCarot}></View>
+                            <View style={styles.pickerViewHeader}>
+                                <TouchableOpacity onPress={this.cancelModal}>
+                                    <Text style={styles.pickerViewHeaderButtonText}>{'< Back'}</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={this.submitModal}>
+                                    <Text style={styles.pickerViewHeaderButtonText}>
+                                        Done
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.pickerViewBottom}>
+                                <TriangleColorPicker
+                                    onColorChange={c => this.setState({color: fromHsv(c)})}
+                                    defaultColor={color}
+                                    style={{width: "100%", height: 300}}
+                                    onTouch={() => console.log("Touched")}
+                                    onLeave={() => console.log("Retrieved")}
+                                />
+                            </View>
+                        </View>
+                    }
+                    <View style={styles.customColorPicker}>
+                        <View style={[styles.preview, {backgroundColor: color}]}></View>
+                        <TextInput value={this.state.color} style={[styles.textInput, Dimensions.get('window').width < 400 && {width: 130}]} onEndEditing={this.onEndEditing} onChangeText={(t) => this.onUpdate(t)}/>
+                        <TouchableOpacity onPress={this.openModal}>
+                            <View style={styles.pickerButton}>
+                                <Text style={styles.pickerButtonText}>?</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View> 
+                </View>
+            );
+        }
+
+        
     }
 }
