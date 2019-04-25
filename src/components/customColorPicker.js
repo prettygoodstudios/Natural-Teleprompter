@@ -160,6 +160,7 @@ export default class CustomColorPicker extends Component {
             animationType="slide"
             transparent={false}
             visible={this.state.visible}
+            onRequestClose={() => this.cancelModal()}
             >
                 <View style={styles.pickerView}>
                     <View style={styles.pickerViewHeader}>
@@ -177,8 +178,6 @@ export default class CustomColorPicker extends Component {
                             onColorChange={c => this.setState({color: fromHsv(c)})}
                             defaultColor={color}
                             style={{width: "100%", height: 300}}
-                            onTouch={() => console.log("Touched")}
-                            onLeave={() => console.log("Retrieved")}
                         />
                     </View>
                 </View>

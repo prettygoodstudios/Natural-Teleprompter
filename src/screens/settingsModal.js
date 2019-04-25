@@ -78,10 +78,11 @@ class SettingsModal extends Component {
                     <Text style={styles.inputLabel}>Mirror Text</Text>
                     <Switch value={mirror} onValueChange={(v) => this.updateMirror(v)}/>
                     <Text style={styles.inputLabel}>Smart Pause Mode</Text>
-                    <Text>The telprompter will automatically start when it hears your voice and will automatically pause when it hears pauses in your voice.</Text>
+                    <Text>The telprompter will automatically start when it hears your voice and will automatically pause when it hears pauses in your voice. Turning on smart pause mode will turn off selfie mode since the two features can't work concurrently due to technical limitations.</Text>
                     <Switch value={smartMode} onValueChange={(v) => this.props.setSmartMode(v)}/>
                     <View style={{width: "100%", height: 20}}></View>
                     <Text style={styles.inputLabel}>Selfie Mode</Text>
+                    <Text>Gives the user the ability to view and record themselves while utlizing the teleprompter. The app records the user using the device's selfie camera. Users can chose to locally save or discard recorded segments. Turning on selfie mode will turn off smart pause mode since the two features can't work concurrently due to technical limitations.</Text>
                     <Switch value={selfieMode} onValueChange={(v) => this.props.setSelfieMode(v)}/>
                     <View style={{width: "100%", height: 20}}></View>
                     {   selfieMode &&

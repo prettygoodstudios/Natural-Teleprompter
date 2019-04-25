@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
        fontSize: 30,
        fontWeight: "700",
        color: offWhite,
-       zIndex: 0
+       zIndex: 0,
+       margin: 0
    },
    container: {
        padding: 20,

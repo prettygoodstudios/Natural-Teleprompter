@@ -1,6 +1,8 @@
 import {AsyncStorage} from  "react-native";
 import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE, SET_MIRROR, SET_TYPE_FACE, SET_CONTROL_PANEL_SIZE, SET_SMART_MODE, SET_SELFIE_MODE, SET_SELFIE_MASK_OPACITY, SET_SELFIE_MASK_COLOR } from "./types";
-import { back } from "react-native/Libraries/Animated/src/Easing";
+import Recording from "react-native-recording";
+import {analyzeAudio} from "./audio";
+
 
 //Setting Keys
 const SPEED = 'TELEPROMPTER_SPEED';
@@ -146,17 +148,40 @@ export const setControlPanelSize = (val) => {
 
 export const setSmartMode = (val) => {
     storeData(SMART_MODE, val.toString());
-    return{
-        type: SET_SMART_MODE,
-        payload: val
+    return function(dispatch){
+        if(val){
+            Recording.init({
+                bufferSize: 4096,
+                sampleRate: 44100,
+                bitsPerChannel: 16,
+                channelsPerFrame: 1,
+            });
+            Recording.addRecordingEventListener(data => dispatch(analyzeAudio(data)));
+            Recording.start();
+        }
+        dispatch({
+            type: SET_SMART_MODE,
+            payload: val
+        })
+        if(val){
+            dispatch(setSelfieMode(false));
+        }
     }
 }
 
 export const setSelfieMode = (val) => {
+    if(val){
+        Recording.stop();
+    }
     storeData(SELFIE_MODE, val.toString());
-    return{
-        type: SET_SELFIE_MODE,
-        payload: val
+    return function(dispatch){
+        dispatch({
+            type: SET_SELFIE_MODE,
+            payload: val
+        });
+        if(val){
+            dispatch(setSmartMode(false))
+        }
     }
 }
 
