@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {View, Text, ScrollView, TextInput, Slider, Dimensions, Switch, TouchableOpacity} from "react-native";
+import ReactNative, {View, Text, ScrollView, TextInput, Slider, Dimensions, Switch, TouchableOpacity, TouchableHighlight} from "react-native";
 import Recording from 'react-native-recording';
 import RNSoundLevel from 'react-native-sound-level'
 import {connect} from 'react-redux';

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {View, Text, Slider, Switch, ScrollView, Dimensions} from "react-native";
+import ReactNative, {View, Text, Slider, Switch, ScrollView, Dimensions, TouchableHighlight} from "react-native";
 import {connect} from 'react-redux';
 import {TriangleColorPicker} from 'react-native-color-picker';
 
@@ -63,16 +63,11 @@ class SettingsModal extends Component {
                     <CustomColorPicker 
                         color={color} 
                         setColor={this.props.setColor}
-                        onOpen={() => this.setState({scroll: false})}
-                        onClose={() => this.setState({scroll: true})}
-                        onTop={true}
                     />
                     <Text style={styles.inputLabel}>Background Color</Text>
                     <CustomColorPicker 
                         color={backgroundColor} 
                         setColor={this.props.setBackgroundColor}
-                        onOpen={() => this.setState({scroll: false})}
-                        onClose={() => this.setState({scroll: true})}
                     />
                     <Text style={styles.inputLabel}>Speed</Text>
                     <Slider minimumValue={0} maximumValue={20} value={speed} onSlidingComplete={(v) => this.props.setSpeed(v)}/>
@@ -97,9 +92,6 @@ class SettingsModal extends Component {
                             <CustomColorPicker 
                                 color={rgbToHex(...selfieMaskColor)} 
                                 setColor={color => this.props.setSelfieMaskColor(hexToRgb(color))}
-                                onOpen={() => this.setState({scroll: false})}
-                                onClose={() => this.setState({scroll: true})}
-                                onTop={true}
                             />
                         </View>
                     }
