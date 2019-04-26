@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="host.exp.exponent:expo-app-auth-2.0.0">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/expo-app-auth-2.0.0.aar/6e81a4fe5d355b215879feaebcc4fe67/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/expo-app-auth-2.0.0.aar/6e81a4fe5d355b215879feaebcc4fe67/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/expo-app-auth-2.0.0.aar/110db9c115f99bb5d2d016a7d317e0db/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/expo-app-auth-2.0.0.aar/110db9c115f99bb5d2d016a7d317e0db/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

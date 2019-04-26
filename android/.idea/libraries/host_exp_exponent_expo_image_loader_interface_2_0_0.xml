@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="host.exp.exponent:expo-image-loader-interface-2.0.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/expo-image-loader-interface-2.0.0.aar/c2a1e94802344d98cc4b1509b2526c5b/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/expo-image-loader-interface-2.0.0.aar/c2a1e94802344d98cc4b1509b2526c5b/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/expo-image-loader-interface-2.0.0.aar/467dd209f46529538186ac19f3d73ddd/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/expo-image-loader-interface-2.0.0.aar/467dd209f46529538186ac19f3d73ddd/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="host.exp.exponent:expoview-32.0.0">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/637cf4f7ded2275479503f9b7d30a3cb/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/637cf4f7ded2275479503f9b7d30a3cb/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/6800a9a875ce2c3183d5b8b7b8c9ba8e/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/6800a9a875ce2c3183d5b8b7b8c9ba8e/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

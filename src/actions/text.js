@@ -1,7 +1,8 @@
 import {TOGGLE_TEXT_MODAL, SET_TEXT, SET_POSITION, SET_HEIGHT} from "./types";
 
-import { Google } from 'expo';
-import { GOOGLE_WEB_CLIENT_ID } from '../../env';
+import { GoogleSignIn } from 'expo';
+import { IOS_GOOGLE_WEB_CLIENT_ID, ANDROID_GOOGLE_WEB_CLIENT_ID } from '../../env';
+import {Platform} from "react-native";
 
 export const toggleTextModal = () => {
     return {
@@ -33,6 +34,15 @@ export const setHeight  = (height) => {
 
 export const loginToGoogle = () => {
     return async function(dispatch){
-        const { type, accessToken } = await Google.logInAsync({ clientId: GOOGLE_WEB_CLIENT_ID });
+        try {
+            await GoogleSignIn.initAsync({ clientId: Platform.OS === 'ios' ? IOS_GOOGLE_WEB_CLIENT_ID : ANDROID_GOOGLE_WEB_CLIENT_ID });
+            await GoogleSignIn.askForPlayServicesAsync();
+            const { type, user } = await GoogleSignIn.signInAsync();
+            if (type === 'success') {
+                // ...
+            }
+        } catch ({ message }) {
+            alert('login: Error:' + message);
+        }
     }
 }

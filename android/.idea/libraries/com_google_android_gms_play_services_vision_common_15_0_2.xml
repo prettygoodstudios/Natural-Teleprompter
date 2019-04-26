@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="com.google.android.gms:play-services-vision-common-15.0.2">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-vision-common-15.0.2.aar/c399b36b02519242ac145ce4dcb79080/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-vision-common-15.0.2.aar/c399b36b02519242ac145ce4dcb79080/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-vision-common-15.0.2.aar/840a8d87b6489c8cceb31d474f024d7a/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-vision-common-15.0.2.aar/840a8d87b6489c8cceb31d474f024d7a/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
