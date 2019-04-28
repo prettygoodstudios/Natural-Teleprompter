@@ -1,7 +1,7 @@
 import {AsyncStorage} from  "react-native";
-import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE, SET_MIRROR, SET_TYPE_FACE, SET_CONTROL_PANEL_SIZE, SET_SMART_MODE, SET_SELFIE_MODE, SET_SELFIE_MASK_OPACITY, SET_SELFIE_MASK_COLOR } from "./types";
+import { RETRIEVE_SETTINGS, TOGGLE_SETTINGS_MODAL, SET_COLOR, SET_BACKGROUND_COLOR, SET_SPEED, SET_DIRECTION, SET_FONT_SIZE, SET_MIRROR, SET_TYPE_FACE, SET_CONTROL_PANEL_SIZE, SET_SMART_MODE, SET_SELFIE_MODE, SET_SELFIE_MASK_OPACITY, SET_SELFIE_MASK_COLOR, SET_LAST_SOUND } from "./types";
 import Recording from "react-native-recording";
-import {analyzeAudio} from "./audio";
+
 
 
 //Setting Keys
@@ -25,6 +25,19 @@ const getKey = async (key) => {
         return value;
     } catch (error) {
         return {error};
+    }
+}
+
+const analyzeAudio = (stream) => {
+    return function(dispatch){
+        const streamMeanVolume = stream[0] ? stream.reduce((a, b) => a+b)/stream.length : 0;
+        if(streamMeanVolume > 1){
+            console.log("Loud", streamMeanVolume);
+            dispatch({
+                type: SET_LAST_SOUND,
+                payload: Date.now()
+            });
+        }
     }
 }
 
@@ -195,7 +208,6 @@ export const setSelfieMaskOpacity = (val) => {
 
 export const setSelfieMaskColor = (val) => {
     storeData(SELFIE_MASK_COLOR, val.toString());
-    console.log("Selfie Color",val);
     return{
         type: SET_SELFIE_MASK_COLOR,
         payload: val

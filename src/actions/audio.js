@@ -6,7 +6,6 @@ export const analyzeAudio = (stream) => {
     return function(dispatch){
         const streamMeanVolume = stream[0] ? stream.reduce((a, b) => a+b)/stream.length : 0;
         if(streamMeanVolume > 1){
-            console.log("Loud", streamMeanVolume);
             dispatch({
                 type: SET_LAST_SOUND,
                 payload: Date.now()

@@ -104,7 +104,7 @@ apply from: 'expo.gradle'
 // WHEN_PREPARING_SHELL_REMOVE_TO_HERE
 
 dependencies {
-    compile project(':react-native-recording')
+  implementation project(':react-native-recording')
   implementation fileTree(dir: 'libs', include: ['*.jar'])
 
   implementation 'com.android.support:multidex:1.0.1'
@@ -125,7 +125,6 @@ dependencies {
 
   // Be careful when upgrading! Upgrading might break experience scoping. Check with Jesse. See Analytics.resetAmplitudeDatabaseHelper
   implementation 'com.amplitude:android-sdk:2.9.2'
-
   implementation 'com.squareup.picasso:picasso:2.5.2'
   implementation 'com.google.android.gms:play-services-gcm:15.0.1'
   implementation 'com.google.android.gms:play-services-analytics:16.0.1'
@@ -133,6 +132,7 @@ dependencies {
   implementation 'com.google.android.gms:play-services-auth:15.0.1'
   implementation 'com.google.android.gms:play-services-location:15.0.1'
   implementation 'com.google.android.gms:play-services-ads:15.0.1'
+  implementation 'com.google.android.gms:play-services-identity:16.0.0'
   annotationProcessor 'com.raizlabs.android:DBFlow-Compiler:2.2.1'
   implementation "com.raizlabs.android:DBFlow-Core:2.2.1"
   implementation "com.raizlabs.android:DBFlow:2.2.1"
@@ -239,3 +239,4 @@ dependencies {
 
 // This has to be down here for some reason
 apply plugin: 'com.google.gms.google-services'
+

@@ -72,7 +72,9 @@ const styles = StyleSheet.create({
    },
    loadingWrapper: {
        justifyContent: "center",
-       alignItems: "center"
+       alignItems: "center",
+       backgroundColor: "white",
+       flexDirection: "column"
    },
    camera: {
        position: "absolute",

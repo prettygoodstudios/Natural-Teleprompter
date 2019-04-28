@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import ReactNative, {View, Text, Slider, Switch, ScrollView, Dimensions, TouchableHighlight} from "react-native";
+import {View, Text, Slider, Switch, ScrollView, Dimensions, TouchableHighlight} from "react-native";
 import {connect} from 'react-redux';
-import {TriangleColorPicker} from 'react-native-color-picker';
+import CustomColorPicker from "react-native-modal-color-picker";
 
 import * as actions from "../actions"
 import styles from "../styles";
@@ -9,7 +9,10 @@ import {rgbToHex, hexToRgb} from '../helpers/colors';
 
 import CustomPicker from "../components/customPicker";
 import Modal from "../components/modal";
-import CustomColorPicker from "../components/customColorPicker";
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 const {width, height} = Dimensions.get('window');
 
@@ -18,10 +21,22 @@ class SettingsModal extends Component {
     constructor(){
         super();
         this.state = {
-            scroll: true
+            scroll: true,
+            maskColor: "#ECECEC"
         }
     }
 
+    componentDidMount(){
+ 
+        
+    }
+
+    updateMaskcolor = () => {
+        this.setState({
+            maskColor: rgbToHex(...this.props.selfieMaskColor)
+        });
+    }
+ 
     updateFontSize = (size) => {
         this.props.setFontSize(size);
         this.props.setDirection(0);
@@ -47,8 +62,15 @@ class SettingsModal extends Component {
         });
     }
 
+    setSelfieMaskColor = (color) => {
+        this.setState({
+            maskColor: color
+        });
+        this.props.setSelfieMaskColor(hexToRgb(color));
+    }
+ 
     render(){
-        const {color, backgroundColor, settingsModal, toggleSettingsModal, speed, fontSize, mirror, typeFace, controlPanelSize, smartMode, selfieMode, selfieMaskOpacity, selfieMaskColor} = this.props;
+        const {color, backgroundColor, settingsModal, speed, fontSize, mirror, typeFace, controlPanelSize, smartMode, selfieMode, selfieMaskOpacity, selfieMaskColor} = this.props;
 
         if(!settingsModal){
             return(
@@ -91,8 +113,8 @@ class SettingsModal extends Component {
                             <Slider minimumValue={0} maximumValue={1} value={selfieMaskOpacity} onSlidingComplete={(v) => this.props.setSelfieMaskOpacity(v)}/>
                             <Text style={styles.inputLabel}>Background Text Background Mask Color</Text>
                             <CustomColorPicker 
-                                color={rgbToHex(...selfieMaskColor)} 
-                                setColor={color => this.props.setSelfieMaskColor(hexToRgb(color))}
+                                color={rgbToHex(...this.props.selfieMaskColor)} 
+                                setColor={color => this.setSelfieMaskColor(color)}
                             />
                         </View>
                     }

@@ -37,7 +37,13 @@
     "android": {
       "package": "naturaral.teleprompter.android",
       "publishBundlePath": "android/app/src/main/assets/shell-app.bundle",
-      "publishManifestPath": "android/app/src/main/assets/shell-app-manifest.json"
+      "publishManifestPath": "android/app/src/main/assets/shell-app-manifest.json",
+      "googleServicesFile": "./google-services.json",
+      "config": {
+        "googleSignIn": {
+            "certificateHash": "7b:4e:9c:bd:82:f5:da:22:4d:ba:84:02:c7:da:be:8a:21:9e:01:70"
+        }
+      }
     },
     "isDetached": true,
     "detach": {

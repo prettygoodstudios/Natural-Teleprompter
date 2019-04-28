@@ -35,6 +35,7 @@ export const setHeight  = (height) => {
 export const loginToGoogle = () => {
     return async function(dispatch){
         try {
+            await GoogleSignIn.askForPlayServicesAsync();
             await GoogleSignIn.initAsync({ clientId: Platform.OS === 'ios' ? IOS_GOOGLE_WEB_CLIENT_ID : ANDROID_GOOGLE_WEB_CLIENT_ID });
             await GoogleSignIn.askForPlayServicesAsync();
             const { type, user } = await GoogleSignIn.signInAsync();

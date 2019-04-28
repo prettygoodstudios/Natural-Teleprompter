@@ -8,6 +8,8 @@ import {Font, Permissions, ScreenOrientation} from "expo";
 
 
 import reducers from './src/reducers';
+import * as actions from "./src/actions";
+
 const logger = createLogger();
 const store = createStore(reducers, applyMiddleware(reduxThunk));
 
@@ -16,9 +18,16 @@ import MainScreen from "./src/screens/main";
 import styles from './src/styles';
 
 
+const SplashScreen = (props) => {
+  return(
+    <View style={styles.loadingWrapper}>
+      <Image source={require("./assets/splash.png")} style={{height: "100%", width: 300, resizeMode: "contain"}} />
+    </View>
+  );
+}
 
 
-export default class App extends React.Component {
+class AppWrapper extends React.Component {
 
   constructor(){
     super();
@@ -57,15 +66,38 @@ export default class App extends React.Component {
     if(cameraStatus !== 'granted' || microphoneStatus !== 'granted' || cameraRollStatus !== 'granted'){
       alert("In order to use this app you must grant the camera, camera roll and microphone permissions.")
     }
+    this.props.retrieveSavedSettings();
   }
 
   render() {
     const {fontsLoaded, hasCameraPermission, hasMicrophonePermission, hasCameraRollPermission} = this.state;
+    if(fontsLoaded && hasCameraPermission && hasMicrophonePermission && hasCameraRollPermission && this.props.settingsRetrieved){
+      return <MainScreen />
+    }else{
+      return <SplashScreen />
+    }
+  }
 
-    return (
+}
+
+function mapStateToProps(state){
+  return{
+    settingsRetrieved: state.settings.settingsRetrieved
+  }
+}
+
+const MainAppWrapper = connect(mapStateToProps, actions)(AppWrapper);
+
+
+
+
+export default class App extends React.Component {
+
+  render(){
+    return(
       <Provider store={store}>
-        {fontsLoaded && hasCameraPermission && hasMicrophonePermission && hasCameraRollPermission ? <MainScreen /> : <View style={styles.loadingWrapper}><Image source={require("./assets/splash.png")} style={{height: "100%", width: 300, resizeMode: "contain"}} /></View>}
+        <MainAppWrapper />
       </Provider>
     );
-  }
+  }  
 }

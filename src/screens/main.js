@@ -46,7 +46,6 @@ class MainScreen extends Component {
     componentDidMount(){
         this.props.retrieveSavedSettings();
         this.animationFrameId = requestAnimationFrame(this.animateText);
-
         Dimensions.addEventListener('change', () => {
             const {width, height} = Dimensions.get('window');
             this.setState({
@@ -59,7 +58,7 @@ class MainScreen extends Component {
             cameraHeight: height - 140,
             cameraWidth: width + 20
         });
-        /*
+        
         Recording.init({
             bufferSize: 4096,
             sampleRate: 44100,
@@ -68,7 +67,6 @@ class MainScreen extends Component {
         });
         Recording.addRecordingEventListener(data => this.props.analyzeAudio(data));
         Recording.start();
-        */
        /*
        RNSoundLevel.start()
        RNSoundLevel.onNewFrame = (data) => {
@@ -79,7 +77,7 @@ class MainScreen extends Component {
     }
 
     animateText = (timestamp) => {
-        const {speed, direction, text, position, fontSize, height, smartMode, lastSoundMS} = this.props;
+        const {speed, direction, position, fontSize, height, smartMode, lastSoundMS} = this.props;
         
         if(smartMode){
             this.props.decideToPauseOrStart(lastSoundMS);

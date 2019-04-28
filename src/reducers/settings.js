@@ -15,12 +15,10 @@ const INIT_STATE = {
     smartMode: false,
     selfieMode: false,
     selfieMaskOpacity: 0.5,
-    selfieMaskColor: [20,20,20]
+    selfieMaskColor: [20,20,20],
+    settingsRetrieved: false
 }
 
-/* TODO: 
-    *Build out camera text background mask color feature
-*/
 
 export default function(state = INIT_STATE, action){
     switch(action.type){
@@ -40,7 +38,8 @@ export default function(state = INIT_STATE, action){
                 smartMode: smartMode ? (smartMode === "true") : state.smartMode,
                 selfieMode: selfieMode ? (selfieMode === "true") : state.selfieMode,
                 selfieMaskOpacity: selfieMaskOpacity ? parseFloat(selfieMaskOpacity) : state.selfieMaskOpacity,
-                selfieMaskColor: selfieMaskColor ? selfieMaskColor.split(",") : state.selfieMaskColor
+                selfieMaskColor: selfieMaskColor ? selfieMaskColor.split(",") : state.selfieMaskColor,
+                settingsRetrieved: true
             }
         case TOGGLE_SETTINGS_MODAL:
             return{
