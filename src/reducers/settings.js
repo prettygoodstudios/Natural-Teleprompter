@@ -38,7 +38,7 @@ export default function(state = INIT_STATE, action){
                 smartMode: smartMode ? (smartMode === "true") : state.smartMode,
                 selfieMode: selfieMode ? (selfieMode === "true") : state.selfieMode,
                 selfieMaskOpacity: selfieMaskOpacity ? parseFloat(selfieMaskOpacity) : state.selfieMaskOpacity,
-                selfieMaskColor: selfieMaskColor ? selfieMaskColor.split(",") : state.selfieMaskColor,
+                selfieMaskColor: selfieMaskColor ? selfieMaskColor.split(",").map((n) => parseFloat(n)) : state.selfieMaskColor,
                 settingsRetrieved: true
             }
         case TOGGLE_SETTINGS_MODAL:

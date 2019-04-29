@@ -41,7 +41,7 @@
       "googleServicesFile": "./google-services.json",
       "config": {
         "googleSignIn": {
-            "certificateHash": "7b:4e:9c:bd:82:f5:da:22:4d:ba:84:02:c7:da:be:8a:21:9e:01:70"
+          "certificateHash": "7b:4e:9c:bd:82:f5:da:22:4d:ba:84:02:c7:da:be:8a:21:9e:01:70"
         }
       }
     },
@@ -50,6 +50,7 @@
       "iosExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/ios-v2.10.6-sdk32.0.0-e50ee83a-41bd-4965-b067-4c815a3b3fcc.tar.gz",
       "androidExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/android-v2.10.7-sdk32.0.0-3ff7f3bf-8e53-4d61-b963-1d7d92a77d79.tar.gz"
     },
-    "scheme": "exp5cb1e9c0a67442ceb56b4bb4f0444ba0"
+    "scheme": "exp5cb1e9c0a67442ceb56b4bb4f0444ba0",
+    "description": ""
   }
 }

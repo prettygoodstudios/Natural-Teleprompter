@@ -78,6 +78,9 @@ class SettingsModal extends Component {
             )
         }
 
+        console.log("Current Selfie Mask Color", this.props.selfieMaskColor[0], this.props.selfieMaskColor[1], this.props.selfieMaskColor[2]);
+        console.log("Current HEX", rgbToHex(this.props.selfieMaskColor[0], this.props.selfieMaskColor[1], this.props.selfieMaskColor[2]))
+
         return(
             <Modal dismiss={this.toggle} title="Settings">
                 <ScrollView scrollEnabled={this.state.scroll} >
@@ -112,10 +115,12 @@ class SettingsModal extends Component {
                             <Text style={styles.inputLabel}>Selfie Text Background Mask Opacity</Text>
                             <Slider minimumValue={0} maximumValue={1} value={selfieMaskOpacity} onSlidingComplete={(v) => this.props.setSelfieMaskOpacity(v)}/>
                             <Text style={styles.inputLabel}>Background Text Background Mask Color</Text>
-                            <CustomColorPicker 
-                                color={rgbToHex(...this.props.selfieMaskColor)} 
-                                setColor={color => this.setSelfieMaskColor(color)}
-                            />
+                            {   this.props.selfieMaskColor.length > 0 && 
+                                <CustomColorPicker 
+                                    color={rgbToHex(...this.props.selfieMaskColor)} 
+                                    setColor={color => this.setSelfieMaskColor(color)}
+                                />
+                            }
                         </View>
                     }
                     <View style={{width: "100%", height: 20}}></View>
